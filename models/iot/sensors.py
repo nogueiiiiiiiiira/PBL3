@@ -8,6 +8,7 @@ class Sensor(db.Model):
     unit = db.Column(db.String(50))
     topic = db.Column(db.String(50))
 
+    @classmethod
     def save_sensor(cls, name, brand, model, topic, unit, is_active):
         device = Device(name=name, brand=brand, model=model, is_active=is_active)
         db.session.add(device)
@@ -16,6 +17,7 @@ class Sensor(db.Model):
         db.session.add(sensor)
         db.session.commit()
 
+    @staticmethod
     def get_sensors():
         sensors = Sensor.query.join(Device, Device.id == Sensor.devices_id)\
         .add_columns(Device.id, Device.name,

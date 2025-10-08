@@ -2,6 +2,9 @@
 from flask import Flask, render_template, request, redirect, flash
 from models.db import db, instance
 from controllers.sensors_controller import sensor_
+from models.iot.devices import Device
+from models.iot.sensors import Sensor
+from models.iot.actuators import Actuator
 
 def create_app():
     app = Flask(__name__,
@@ -108,6 +111,13 @@ def create_app():
     @app.route('/login')
     def login():
         return render_template("login.html")
+
+    @app.route('/tables')
+    def tables():
+        devices = Device.query.all()
+        sensors = Sensor.get_sensors()
+        actuators = Actuator.get_actuators()
+        return render_template("tables.html", devices=devices, sensors=sensors, actuators=actuators)
 
     return app
 

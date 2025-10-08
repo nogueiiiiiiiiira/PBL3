@@ -8,6 +8,7 @@ class Actuator(db.Model):
     unit = db.Column(db.String(50))
     topic = db.Column(db.String(50))
 
+    @classmethod
     def save_actuator(cls, name, brand, model, topic, unit, is_active):
         device = Device(name=name, brand=brand, model=model, is_active=is_active)
         db.session.add(device)
@@ -16,6 +17,7 @@ class Actuator(db.Model):
         db.session.add(actuator)
         db.session.commit()
 
+    @staticmethod
     def get_actuators():
         actuators = Actuator.query.join(Device, Device.id == Actuator.devices_id)\
         .add_columns(Device.id, Device.name,
