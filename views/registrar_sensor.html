@@ -1,0 +1,157 @@
+{% extends "base.html" %}
+
+{% block title %}
+<title>Cadastrar Sensor - Sistema IoT</title>
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg">
+                <div class="card-header bg-success text-white">
+                    <h4 class="mb-0"><i class="fas fa-thermometer-half"></i> Cadastrar Novo Sensor</h4>
+                </div>
+                <div class="card-body">
+                    {% with mensagens = get_flashed_messages(with_categories=true) %}
+                    {% if mensagens %}
+                        {% for categoria, mensagem in mensagens %}
+                            <div class="alert alert-{{ 'danger' if categoria == 'error' else categoria }} alert-dismissible fade show" role="alert">
+                                {{ mensagem }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                    {% endwith %}
+
+                    <form action="{{ url_for('adicionar_sensor') }}" method="POST">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="name" class="form-label">
+                                        <i class="fas fa-tag"></i> Nome do Sensor
+                                    </label>
+                                    <input type="text" class="form-control form-control-lg" id="name" name="name"
+                                           placeholder="Ex: Sensor de Temperatura" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="brand" class="form-label">
+                                        <i class="fas fa-industry"></i> Marca
+                                    </label>
+                                    <input type="text" class="form-control form-control-lg" id="brand" name="brand"
+                                           placeholder="Ex: DHT22" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="model" class="form-label">
+                                        <i class="fas fa-cogs"></i> Modelo
+                                    </label>
+                                    <input type="text" class="form-control form-control-lg" id="model" name="model"
+                                           placeholder="Ex: DHT22-001" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="unit" class="form-label">
+                                        <i class="fas fa-balance-scale"></i> Unidade de Medida
+                                    </label>
+                                    <select class="form-control form-control-lg" id="unit" name="unit" required>
+                                        <option value="">Selecione a unidade</option>
+                                        <option value="°C">°C (Temperatura)</option>
+                                        <option value="°F">°F (Temperatura)</option>
+                                        <option value="%">% (Umidade)</option>
+                                        <option value="lux">lux (Luminosidade)</option>
+                                        <option value="ppm">ppm (CO2)</option>
+                                        <option value="V">V (Voltagem)</option>
+                                        <option value="A">A (Corrente)</option>
+                                        <option value="outro">Outro</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="topic" class="form-label">
+                                <i class="fas fa-broadcast-tower"></i> Tópico MQTT
+                            </label>
+                            <input type="text" class="form-control form-control-lg" id="topic" name="topic"
+                                   placeholder="Ex: sensors/temperature/room1" required>
+                            <small class="form-text text-muted">Tópico onde o sensor publicará os dados via MQTT</small>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="is_active" name="is_active" checked>
+                                <label class="custom-control-label" for="is_active">
+                                    <i class="fas fa-toggle-on"></i> Sensor Ativo
+                                </label>
+                            </div>
+                            <small class="form-text text-muted">Desmarque se o sensor estiver temporariamente fora de operação</small>
+                        </div>
+
+                        <div class="form-group text-center">
+                            <button type="submit" class="btn btn-success btn-lg px-5">
+                                <i class="fas fa-save"></i> Cadastrar Sensor
+                            </button>
+                            <a href="{{ url_for('sensores') }}" class="btn btn-secondary btn-lg ml-2">
+                                <i class="fas fa-arrow-left"></i> Voltar
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.card {
+    border: none;
+    border-radius: 15px;
+}
+
+.card-header {
+    border-radius: 15px 15px 0 0 !important;
+}
+
+.form-control:focus {
+    border-color: #28a745;
+    box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+}
+
+.btn {
+    border-radius: 25px;
+}
+
+.alert {
+    border-radius: 10px;
+}
+
+.custom-control-label::before,
+.custom-control-label::after {
+    top: 0.2rem;
+}
+</style>
+
+<script>
+// Validação do tópico MQTT
+document.getElementById('topic').addEventListener('input', function() {
+    const topic = this.value;
+    const regex = /^[a-zA-Z0-9/_-]+$/;
+
+    if (!regex.test(topic)) {
+        this.setCustomValidity('O tópico deve conter apenas letras, números, barras e underscores');
+    } else {
+        this.setCustomValidity('');
+    }
+});
+</script>
+{% endblock %}

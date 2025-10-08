@@ -1,15 +1,124 @@
 {% extends "base.html" %}
-{% block content %}
-<div class="vertical-center">
-    <div class="container">
-        {% with messages = get_flashed_messages()%}
-            {% if messages %}
-                {{messages[0]}} 
-            {% endif%}
-        {% endwith%}
-        <p>Selecione uma das opções acima!</p>
-    </div>
-</div>
+
+{% block title %}
+<title>Sistema IoT - Minha Casa</title>
 {% endblock %}
 
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-12 text-center">
+            <h1 class="display-4 mb-4">Sistema IoT - Minha Casa</h1>
+            <p class="lead mb-5">Bem-vindo ao seu painel de controle de dispositivos IoT</p>
+        </div>
+    </div>
 
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body text-center">
+                    <i class="fas fa-thermometer-half fa-3x text-primary mb-3"></i>
+                    <h5 class="card-title">Sensores</h5>
+                    <p class="card-text">Monitore temperatura, umidade e outros parâmetros ambientais</p>
+                    <a href="{{ url_for('sensores') }}" class="btn btn-primary">Ver Sensores</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body text-center">
+                    <i class="fas fa-cogs fa-3x text-success mb-3"></i>
+                    <h5 class="card-title">Atuadores</h5>
+                    <p class="card-text">Controle dispositivos como lâmpadas, válvulas e motores</p>
+                    <a href="{{ url_for('atuadores') }}" class="btn btn-primary">Ver Atuadores</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body text-center">
+                    <i class="fas fa-chart-line fa-3x text-info mb-3"></i>
+                    <h5 class="card-title">Tempo Real</h5>
+                    <p class="card-text">Visualize dados em tempo real dos seus sensores</p>
+                    <a href="{{ url_for('tempo_real') }}" class="btn btn-primary">Ver Tempo Real</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% if roles == 1 %}
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body text-center">
+                    <i class="fas fa-users fa-3x text-warning mb-3"></i>
+                    <h5 class="card-title">Gerenciar Usuários</h5>
+                    <p class="card-text">Administre usuários do sistema</p>
+                    <a href="{{ url_for('listar_usuarios') }}" class="btn btn-warning">Gerenciar Usuários</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body text-center">
+                    <i class="fas fa-table fa-3x text-secondary mb-3"></i>
+                    <h5 class="card-title">Tabelas do Sistema</h5>
+                    <p class="card-text">Visualize todas as tabelas consolidadas</p>
+                    <a href="{{ url_for('tabelas') }}" class="btn btn-secondary">Ver Tabelas</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Status do Sistema</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row text-center">
+                        <div class="col-md-3">
+                            <div class="status-item">
+                                <i class="fas fa-server text-success fa-2x"></i>
+                                <p class="mt-2">Servidor Online</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="status-item">
+                                <i class="fas fa-database text-primary fa-2x"></i>
+                                <p class="mt-2">Banco de Dados OK</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="status-item">
+                                <i class="fas fa-wifi text-info fa-2x"></i>
+                                <p class="mt-2">Conectividade OK</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="status-item">
+                                <i class="fas fa-shield-alt text-warning fa-2x"></i>
+                                <p class="mt-2">Segurança Ativa</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .status-item {
+        padding: 20px;
+        border-radius: 8px;
+        background: #f8f9fa;
+        margin: 10px 0;
+    }
+</style>
+{% endblock %}

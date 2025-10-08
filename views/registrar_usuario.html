@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+
+{% block title %}
+<title>Cadastrar Usuário - Sistema IoT</title>
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0"><i class="fas fa-user-plus"></i> Cadastrar Novo Usuário</h4>
+                </div>
+                <div class="card-body">
+                    {% with mensagens = get_flashed_messages(with_categories=true) %}
+                    {% if mensagens %}
+                        {% for categoria, mensagem in mensagens %}
+                            <div class="alert alert-{{ 'danger' if categoria == 'error' else categoria }} alert-dismissible fade show" role="alert">
+                                {{ mensagem }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                    {% endwith %}
+
+                    <form action="{{ url_for('adicionar_usuario') }}" method="POST">
+                        <div class="form-group">
+                            <label for="nome" class="form-label">
+                                <i class="fas fa-user"></i> Nome Completo
+                            </label>
+                            <input type="text" class="form-control form-control-lg" id="nome" name="nome"
+                                   placeholder="Digite o nome completo" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email" class="form-label">
+                                <i class="fas fa-envelope"></i> Email
+                            </label>
+                            <input type="email" class="form-control form-control-lg" id="email" name="email"
+                                   placeholder="Digite o email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="senha" class="form-label">
+                                <i class="fas fa-lock"></i> Senha
+                            </label>
+                            <input type="password" class="form-control form-control-lg" id="senha" name="senha"
+                                   placeholder="Digite uma senha segura" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="confirmar_senha" class="form-label">
+                                <i class="fas fa-lock"></i> Confirmar Senha
+                            </label>
+                            <input type="password" class="form-control form-control-lg" id="confirmar_senha" name="confirmar_senha"
+                                   placeholder="Confirme a senha" required>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="ativo" name="ativo" checked>
+                                <label class="custom-control-label" for="ativo">
+                                    Usuário Ativo
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group text-center">
+                            <button type="submit" class="btn btn-primary btn-lg px-5">
+                                <i class="fas fa-save"></i> Cadastrar Usuário
+                            </button>
+                            <a href="{{ url_for('listar_usuarios') }}" class="btn btn-secondary btn-lg ml-2">
+                                <i class="fas fa-arrow-left"></i> Voltar
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.card {
+    border: none;
+    border-radius: 15px;
+}
+
+.card-header {
+    border-radius: 15px 15px 0 0 !important;
+}
+
+.form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.btn {
+    border-radius: 25px;
+}
+
+.alert {
+    border-radius: 10px;
+}
+</style>
+
+<script>
+// Validação de senha em tempo real
+document.getElementById('confirmar_senha').addEventListener('input', function() {
+    const senha = document.getElementById('senha').value;
+    const confirmar = this.value;
+
+    if (senha !== confirmar) {
+        this.setCustomValidity('As senhas não coincidem');
+    } else {
+        this.setCustomValidity('');
+    }
+});
+</script>
+{% endblock %}

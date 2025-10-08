@@ -1,5 +1,46 @@
 {% extends "base_login.html" %}
 {% block content %}
-<div class="vertical-center">
+<div class="container d-flex justify-content-center align-items-center" style="height: 80vh;">
+    <div class="card shadow-lg p-4" style="width: 400px;">
+        <h3 class="text-center mb-4">Login</h3>
+        {% with mensagens = get_flashed_messages(with_categories=true) %}
+        {% if mensagens %}
+            {% for categoria, mensagem in mensagens %}
+                <div class="alert alert-{{ 'danger' if categoria == 'error' else categoria }} alert-dismissible fade show" role="alert">
+                    {{ mensagem }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <form action="{{ url_for('validar_usuario') }}" method="POST">
+            <div class="form-group">
+                <label for="email"><i class="fas fa-envelope"></i> Email</label>
+                <input type="email" class="form-control form-control-lg" id="email" name="email" placeholder="Digite seu email" required>
+            </div>
+            <div class="form-group">
+                <label for="password"><i class="fas fa-lock"></i> Senha</label>
+                <input type="password" class="form-control form-control-lg" id="password" name="password" placeholder="Digite sua senha" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block btn-lg mt-3">Entrar</button>
+        </form>
+    </div>
 </div>
+
+<style>
+.card {
+    border-radius: 15px;
+}
+
+.form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.btn {
+    border-radius: 25px;
+}
+</style>
 {% endblock %}

@@ -1,5 +1,5 @@
 from flask import Flask
-from models.db import db
+from modelos.db import db
 
 def create_db(app : Flask):
     with app.app_context():
