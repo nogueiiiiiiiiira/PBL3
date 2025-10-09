@@ -36,18 +36,12 @@
           {% endfor %}
         </tbody>
       </table>
-      <form action="http://localhost:8080/register_atuador">
-        <p><input type="submit" value="Adicionar atuator" /></p>
-        <form action="http://localhost:8080/home">
-          <p><input type="submit" value="Retornar" /></p>
-        </form>
-        {% else %}
-        <p>Ainda não atuatores registrados!
-        <p>
-        <form action="http://localhost:8080/register_atuador">
-          <p><input type="submit" value="Adicionar atuator" /></p>
-        </form>
-        {% endif %}
+      <a href="{{ url_for('atuador_.registrar_atuador') }}" class="btn btn-primary">Adicionar Atuador</a>
+      <a href="{{ url_for('inicio') }}" class="btn btn-secondary">Retornar</a>
+      {% else %}
+      <p>Ainda não há atuadores registrados!</p>
+      <a href="{{ url_for('atuador_.registrar_atuador') }}" class="btn btn-primary">Adicionar Atuador</a>
+      {% endif %}
     </div>
   </div>
 </div>

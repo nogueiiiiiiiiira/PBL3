@@ -8,14 +8,14 @@ from modelos.iot.atuadores import Atuador
 # Criação do blueprint para as rotas de atuadores
 atuador_ = Blueprint("atuador_", __name__, template_folder="views")
 
-@atuador_.route('/register_atuador')
+@atuador_.route('/cadastrar_atuador')
 def registrar_atuador():
     """
     Exibe o formulário de cadastro de novo atuador.
     """
     return render_template("registrar_atuador.html")
 
-@atuador_.route('/add_atuador', methods=['POST'])
+@atuador_.route('/adicionar_atuador', methods=['POST'])
 def adicionar_atuador():
     """
     Processa o formulário de cadastro e salva um novo atuador no banco.

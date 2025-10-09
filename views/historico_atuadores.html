@@ -5,6 +5,8 @@
 {% endblock %}
 
 {% block content %}
+<br>
+<br>
 
 <div class="d-flex justify-content-center align-items-center" style="min-height: 90vh;">
     <div class="card shadow-lg" style="width: 75%; max-width: 900px;">
@@ -24,7 +26,6 @@
                 {% endfor %}
             {% endif %}
             {% endwith %}
-
             <form action="{{ url_for('obter_comando') }}" method="POST" class="mb-4 text-center">
                 <div class="row justify-content-center">
                     <div class="col-md-10 col-lg-8">
@@ -32,9 +33,7 @@
                             <label for="atuador_id" class="form-label">
                                 <i class="fas fa-thermometer-half"></i>
                             </label>
-                            <br>
-                            <br>
-                            <select class="form-control form-control-lg" id="atuador_id" name="id" required style="font-size: 1.1rem; height: 3.2rem;">
+                            <select class="form-control form-control-lg" id="atuador_id" name="id" required style="font-size: 1.1rem; height: 55px; margin-top: 20px;">
                                 <option value="">Escolha Atuador</option>
                                 {% for atuador in Atuadores %}
                                     <option value="{{ atuador.id }}">Atuador {{ atuador.id }}</option>
@@ -42,6 +41,8 @@
                             </select>
                         </div>
                     </div>
+                </div>
+                <div class="row justify-content-center">
                     <div class="col-md-5 col-lg-4">
                         <div class="form-group">
                             <label for="start_date" class="form-label">
@@ -49,8 +50,6 @@
                             </label>
                             <input type="datetime-local" class="form-control form-control-lg" id="start_date" name="start" required style="font-size: 1.05rem;">
                         </div>
-                    </div>
-                    <div class="col-md-5 col-lg-4">
                         <div class="form-group">
                             <label for="end_date" class="form-label">
                                 <i class="fas fa-calendar-alt"></i> Data/Hora Final
@@ -105,6 +104,16 @@
 </div>
 
 <style>
+
+select.form-control {
+    appearance: none;           
+    -webkit-appearance: none;   
+    -moz-appearance: none;      
+    background-image: none !important; 
+    background-color: white;   
+    padding-right: 1rem;        
+}
+
 .card {
     border: none;
     border-radius: 15px;

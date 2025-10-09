@@ -35,18 +35,12 @@
           {% endfor %}
         </tbody>
       </table>
-      <form action="http://localhost:8080/registrar_sensor">
-        <p><input type="submit" value="Adicionar Sensor" /></p>
-        <form action="http://localhost:8080/home">
-          <p><input type="submit" value="Retornar" /></p>
-        </form>
-        {% else %}
-        <p>Ainda não sensores registrados!
-        <p>
-        <form action="http://localhost:8080/registrar_sensor">
-          <p><input type="submit" value="Adicionar Sensor" /></p>
-        </form>
-        {% endif %}
+      <a href="{{ url_for('cadastrar_sensor') }}" class="btn btn-primary">Adicionar Sensor</a>
+      <a href="{{ url_for('inicio') }}" class="btn btn-secondary">Retornar</a>
+      {% else %}
+      <p>Ainda não há sensores registrados!</p>
+      <a href="{{ url_for('cadastrar_sensor') }}" class="btn btn-primary">Adicionar Sensor</a>
+      {% endif %}
     </div>
   </div>
 </div>

@@ -1,6 +1,7 @@
 #app_controlador.py
 from flask import Flask, render_template, request, redirect, flash, session, url_for
 from werkzeug.security import generate_password_hash, check_password_hash
+from functools import wraps
 from modelos.db import db, instance
 from controladores.sensores_controlador import sensor_
 from controladores.atuadores_controlador import atuador_
@@ -8,6 +9,14 @@ from modelos.iot.devices import Dispositivo
 from modelos.iot.sensores import Sensor
 from modelos.iot.atuadores import Atuador
 from modelos.user.user import Usuario
+
+def login_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if 'usuario_id' not in session:
+            return redirect(url_for('login'))
+        return f(*args, **kwargs)
+    return decorated_function
 
 def create_app():
     app = Flask(__name__,
@@ -27,8 +36,10 @@ def create_app():
     def indice():
         """
         Página inicial da aplicação IoT.
-        Redireciona para a página principal do sistema.
+        Redireciona para login se não estiver logado.
         """
+        if 'usuario_id' not in session:
+            return redirect(url_for('login'))
         return render_template("home.html")
 
     @app.route('/home')
@@ -40,6 +51,7 @@ def create_app():
         return render_template("home.html")
 
     @app.route('/cadastrar_usuario')
+    @login_required
     def cadastrar_usuario():
         """
         Página para cadastro de novos usuários no sistema.
@@ -47,6 +59,7 @@ def create_app():
         return render_template("registrar_usuario.html")
 
     @app.route('/cadastrar_sensor')
+    @login_required
     def cadastrar_sensor():
         """
         Página para cadastro de novos sensores IoT.
@@ -54,6 +67,7 @@ def create_app():
         return render_template("registrar_sensor.html")
 
     @app.route('/cadastrar_atuador')
+    @login_required
     def cadastrar_atuador():
         """
         Página para cadastro de novos atuadores IoT.
@@ -61,6 +75,7 @@ def create_app():
         return render_template("registrar_atuador.html")
 
     @app.route('/listar_usuarios')
+    @login_required
     def listar_usuarios():
         """
         Página que lista todos os usuários cadastrados no sistema.
@@ -69,6 +84,7 @@ def create_app():
         return render_template("users.html", usuarios=usuarios)
 
     @app.route('/sensores')
+    @login_required
     def sensores():
         """
         Página que exibe todos os sensores cadastrados no sistema IoT.
@@ -76,6 +92,7 @@ def create_app():
         return render_template("sensores.html")
 
     @app.route('/atuadores')
+    @login_required
     def atuadores():
         """
         Página que exibe todos os atuadores cadastrados no sistema IoT.
@@ -92,13 +109,28 @@ def create_app():
         return render_template("tr.html", values=valores)
 
     @app.route('/publicar')
+    @login_required
     def publicar():
         """
         Página para publicar comandos aos atuadores do sistema IoT.
         """
-        return render_template("publish.html")
+        return render_template("publicar.html")
+
+    @app.route('/publicar_mensagem', methods=['POST'])
+    @login_required
+    def publicar_mensagem():
+        """
+        Processa a publicação de mensagens para atuadores via AJAX.
+        """
+        data = request.get_json()
+        message = data.get('message')
+        topic = data.get('topic')
+        # Aqui você pode adicionar lógica para publicar no MQTT ou salvar no banco
+        # Por enquanto, apenas retorna sucesso
+        return {'status': 'Mensagem publicada com sucesso', 'message': message, 'topic': topic}
 
     @app.route('/historico_sensores')
+    @login_required
     def historico_sensores():
         """
         Página que exibe o histórico de dados dos sensores.
@@ -108,6 +140,7 @@ def create_app():
         return render_template("historico_sensores.html", sensores=sensores)
 
     @app.route('/historico_atuadores')
+    @login_required
     def historico_atuadores():
         """
         Página que exibe o histórico de comandos enviados aos atuadores.
@@ -256,16 +289,26 @@ def create_app():
         """
         Processa login do usuário no sistema.
         Valida credenciais usando o modelo de usuário.
+        Inclui um usuário hardcoded para login rápido.
         """
         email = request.form['email']
         senha = request.form['password']
+
+        # Usuário hardcoded para login rápido
+        hardcoded_email = 'admin@gmail.com'
+        hardcoded_senha = '1234'  # Senha em texto plano para simplicidade
+
+        if email == hardcoded_email and senha == hardcoded_senha:
+            session['usuario_id'] = 0  # ID fictício
+            session['usuario_nome'] = 'Admin'
+            session['usuario_email'] = hardcoded_email
+            return redirect(url_for('inicio'))
 
         usuario = Usuario.obter_usuario_por_email(email)
         if usuario and check_password_hash(usuario.senha, senha):
             session['usuario_id'] = usuario.id
             session['usuario_nome'] = usuario.nome
             session['usuario_email'] = usuario.email
-            flash(f'Bem-vindo, {usuario.nome}!', 'success')
             return redirect(url_for('inicio'))
         else:
             flash('Credenciais inválidas. Verifique seu email e senha.', 'error')

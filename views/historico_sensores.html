@@ -6,6 +6,9 @@
 
 {% block content %}
 
+<br>
+<br>
+
 <div class="d-flex justify-content-center align-items-center" style="min-height: 90vh;">
     <div class="card shadow-lg" style="width: 75%; max-width: 900px;">
         <div class="card-header bg-info text-white text-center">
@@ -33,10 +36,8 @@
                             <label for="sensor_id" class="form-label">
                                 <i class="fas fa-thermometer-half"></i>
                             </label>
-                            <br>
-                            <br>
                             <select class="form-control form-control-lg" id="sensor_id" name="id" required
-                                style="font-size: 1.1rem; height: 3.2rem;">
+                                style="font-size: 1.1rem; height: 55px; margin-top: 20px;">
                                 <option value="">Escolha Sensor</option>
                                 {% for sensor in sensores %}
                                 <option value="{{ sensor.id }}">Sensor {{ sensor.id }}</option>
@@ -44,6 +45,8 @@
                             </select>
                         </div>
                     </div>
+                </div>
+                <div class="row justify-content-center">
                     <div class="col-md-5 col-lg-4">
                         <div class="form-group">
                             <label for="start_date" class="form-label">
@@ -52,8 +55,6 @@
                             <input type="datetime-local" class="form-control form-control-lg" id="start_date"
                                 name="start" required style="font-size: 1.05rem;">
                         </div>
-                    </div>
-                    <div class="col-md-5 col-lg-4">
                         <div class="form-group">
                             <label for="end_date" class="form-label">
                                 <i class="fas fa-calendar-alt"></i> Data/Hora Final
@@ -111,6 +112,16 @@
 </div>
 
 <style>
+
+    select.form-control {
+        appearance: none;           
+        -webkit-appearance: none;   
+        -moz-appearance: none;      
+        background-image: none !important; 
+        background-color: white;   
+        padding-right: 1rem;        
+    }
+
     .card {
         border: none;
         border-radius: 15px;
