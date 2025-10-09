@@ -13,7 +13,7 @@
 			<span class="navbar-toggler-icon"></span>
 		</button>
 		<div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
-			<ul class="navbar-nav d-flex justify-content-between w-100 px-2">
+			<ul class="navbar-nav d-flex justify-content-center px-5">
 				<li class="nav-item active">
 					<a class="nav-link" href="{{ url_for('inicio') }}">Início <span class="sr-only">(atual)</span></a>
 				</li>
@@ -37,7 +37,7 @@
 					<a class="nav-link" href="{{ url_for('tempo_real') }}">Tempo Real</a>
 				</li>
 				{% if roles==1 %}
-				<li class="nav-item">
+				<li class="nav-item"> 
 					<a class="nav-link" href="{{ url_for('publicar') }}">Comando Remoto</a>
 				</li>
 				{% endif %}

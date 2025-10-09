@@ -18,6 +18,10 @@ html, body {
     transition: all 0.3s ease;
 }
 
+.navbar-nav .nav-item {
+    margin-right: 10px;
+}
+
 .navbar-brand {
     transition: transform 0.3s ease;
 }
