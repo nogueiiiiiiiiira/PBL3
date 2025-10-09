@@ -1,3 +1,0 @@
-- [x] Adicionar decorador login_required em app_controlador.py
-- [x] Aplicar @login_required às rotas protegidas (cadastrar_usuario, cadastrar_sensor, cadastrar_atuador, listar_usuarios, sensores, atuadores, publicar, historico_sensores, historico_atuadores)
-- [x] Alterar navbar-expand-lg para navbar-expand em base.html para sempre expandir o menu
