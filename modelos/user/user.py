@@ -8,6 +8,7 @@ class Usuario(db.Model):
     senha = db.Column(db.String(100), nullable=False)
     ativo = db.Column(db.Boolean, nullable=False, default=True)
 
+    
     @classmethod
     def salvar_usuario(cls, nome, email, senha, ativo=True):
         usuario = cls(nome=nome, email=email, senha=senha, ativo=ativo)
@@ -27,6 +28,7 @@ class Usuario(db.Model):
     def obter_usuario_por_email(email):
         return Usuario.query.filter_by(email=email).first()
 
+    
     @classmethod
     def atualizar_usuario(cls, id_usuario, nome=None, email=None, senha=None, ativo=None):
         usuario = cls.query.get(id_usuario)

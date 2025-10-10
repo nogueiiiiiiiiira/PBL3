@@ -8,6 +8,7 @@ class Atuador(db.Model):
     unidade = db.Column(db.String(50))
     topico = db.Column(db.String(50))
 
+    
     @classmethod
     def salvar_atuador(cls, nome, marca, modelo, topico, unidade, ativo):
         dispositivo = Dispositivo(nome=nome, marca=marca, modelo=modelo, ativo=ativo)
@@ -26,6 +27,7 @@ class Atuador(db.Model):
     def obter_atuador_por_id(id_atuador):
         return Atuador.query.get(id_atuador)
 
+    
     @classmethod
     def atualizar_atuador(cls, id_atuador, nome=None, marca=None, modelo=None, topico=None, unidade=None, ativo=None):
         atuador = cls.query.get(id_atuador)

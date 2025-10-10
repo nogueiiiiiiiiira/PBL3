@@ -8,6 +8,7 @@ class Sensor(db.Model):
     unidade = db.Column(db.String(50))
     topico = db.Column(db.String(50))
 
+    
     @classmethod
     def salvar_sensor(cls, nome, marca, modelo, topico, unidade, ativo):
         dispositivo = Dispositivo(nome=nome, marca=marca, modelo=modelo, ativo=ativo)
@@ -26,6 +27,7 @@ class Sensor(db.Model):
     def obter_sensor_por_id(id_sensor):
         return Sensor.query.get(id_sensor)
 
+    
     @classmethod
     def atualizar_sensor(cls, id_sensor, nome=None, marca=None, modelo=None, topico=None, unidade=None, ativo=None):
         sensor = cls.query.get(id_sensor)
