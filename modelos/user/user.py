@@ -17,7 +17,7 @@ class Usuario(db.Model):
 
     @staticmethod
     def obter_usuarios():
-        return Usuario.query.all()
+        return Usuario.query.order_by(Usuario.id).all()
 
     @staticmethod
     def obter_usuario_por_id(id_usuario):

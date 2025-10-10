@@ -20,7 +20,7 @@ class Sensor(db.Model):
 
     @staticmethod
     def obter_sensores():
-        return Sensor.query.all()
+        return Sensor.query.order_by(Sensor.id).all()
 
     @staticmethod
     def obter_sensor_por_id(id_sensor):

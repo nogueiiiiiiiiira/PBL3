@@ -16,11 +16,11 @@
         {% for chave, valor in values.items() %}
         <div class="card">
             {% if chave == 'temperatura' %}
-            <img src="{{ url_for('static', filename='img/imagem3.png') }}" alt="Temperatura">
+            <i class="fas fa-thermometer-half"></i>
             <h5>Temperatura</h5>
             <h3>{{ valor }} °C</h3>
             {% else %}
-            <img src="{{ url_for('static', filename='img/imagem4.png') }}" alt="Umidade">
+            <i class="fas fa-tint"></i>
             <h5>Umidade</h5>
             <h3>{{ valor }} %</h3>
             {% endif %}

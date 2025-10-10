@@ -45,10 +45,17 @@
     box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.4);
 }
 
-.real-time-page .card img {
-    width: 80px;
-    height: 80px;
+.real-time-page .card i {
+    font-size: 3.25rem;
+    background: linear-gradient(45deg, #6a4bb3, #45297a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     margin-bottom: 1rem;
+    transition: transform 0.3s ease;
+}
+
+.real-time-page .card:hover i {
+    transform: rotate(-10deg) scale(1.1);
 }
 
 .real-time-page .card h5 {

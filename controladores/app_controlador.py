@@ -93,28 +93,13 @@ def create_app():
     @app.route('/historico_sensores')
     @login_required
     def historico_sensores():
-        sensores = [{'id': 1, 'name': 'Sensor de Temperatura'}, {'id': 2, 'name': 'Sensor de Umidade'}, {'id': 3, 'name': 'Sensor de Pressão'}]
-        read = [
-            {'sensor_name': 'Sensor de Temperatura', 'value': 25.5, 'read_datetime': '2023-10-01 12:00:00'},
-            {'sensor_name': 'Sensor de Temperatura', 'value': 26.0, 'read_datetime': '2023-10-01 13:00:00'},
-            {'sensor_name': 'Sensor de Umidade', 'value': 60.0, 'read_datetime': '2023-10-01 12:30:00'},
-            {'sensor_name': 'Sensor de Umidade', 'value': 65.0, 'read_datetime': '2023-10-01 13:30:00'},
-            {'sensor_name': 'Sensor de Pressão', 'value': 1013.0, 'read_datetime': '2023-10-01 12:15:00'},
-            {'sensor_name': 'Sensor de Pressão', 'value': 1015.0, 'read_datetime': '2023-10-01 13:15:00'}
-        ]
+        read = []
         return render_template('historico_sensores.html', read=read)
 
     @app.route('/historico_atuadores')
     @login_required
     def historico_atuadores():
-        write = [
-            {'actuator_name': 'Atuador de Luz', 'value': 1, 'write_datetime': '2023-10-01 12:00:00'},
-            {'actuator_name': 'Atuador de Luz', 'value': 0, 'write_datetime': '2023-10-01 13:00:00'},
-            {'actuator_name': 'Atuador de Ventilador', 'value': 1, 'write_datetime': '2023-10-01 12:30:00'},
-            {'actuator_name': 'Atuador de Ventilador', 'value': 0, 'write_datetime': '2023-10-01 13:30:00'},
-            {'actuator_name': 'Atuador de Alarme', 'value': 1, 'write_datetime': '2023-10-01 12:15:00'},
-            {'actuator_name': 'Atuador de Alarme', 'value': 0, 'write_datetime': '2023-10-01 13:15:00'}
-        ]
+        write = []
         return render_template('historico_atuadores.html', write=write)
 
     @app.route('/obter_dados', methods=['POST'])

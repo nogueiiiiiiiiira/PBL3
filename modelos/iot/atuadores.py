@@ -20,7 +20,7 @@ class Atuador(db.Model):
 
     @staticmethod
     def obter_atuadores():
-        return Atuador.query.all()
+        return Atuador.query.order_by(Atuador.id).all()
 
     @staticmethod
     def obter_atuador_por_id(id_atuador):
