@@ -33,13 +33,13 @@
             <tbody>
                 {% for sensor in sensores %}
                 <tr>
-                    <td>{{ sensor.name }}</td>
-                    <td>{{ sensor.brand }}</td>
-                    <td>{{ sensor.model }}</td>
-                    <td>{{ sensor.topic }}</td>
-                    <td>{{ sensor.unit }}</td>
+                    <td>{{ sensor.dispositivo.nome }}</td>
+                    <td>{{ sensor.dispositivo.marca }}</td>
+                    <td>{{ sensor.dispositivo.modelo }}</td>
+                    <td>{{ sensor.topico }}</td>
+                    <td>{{ sensor.unidade }}</td>
                     <td>
-                        {% if sensor.is_active %}
+                        {% if sensor.dispositivo.ativo %}
                         <span>Ativo</span>
                         {% else %}
                         <span>Desativado</span>
@@ -47,8 +47,8 @@
                     </td>
                     <td>
                         <div role="group">
-                            <a href="http://localhost:8080/edit_sensor?id={{ sensor.id }}">Editar</a>
-                            <a href="http://localhost:8080/del_sensor?id={{ sensor.id }}" 
+                            <a href="{{ url_for('sensor_.atualizar_sensor', id_sensor=sensor.id) }}">Editar</a>
+                            <a href="{{ url_for('sensor_.deletar_sensor', id_sensor=sensor.id) }}"
                                onclick="return confirm('Tem certeza que deseja remover este sensor?')">Deletar</a>
                         </div>
                     </td>

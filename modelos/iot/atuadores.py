@@ -20,8 +20,7 @@ class Atuador(db.Model):
 
     @staticmethod
     def obter_atuadores():
-        atuadores = Atuador.query.join(Dispositivo, Dispositivo.id == Atuador.dispositivos_id).add_columns(Dispositivo.id, Dispositivo.nome, Dispositivo.marca, Dispositivo.modelo, Dispositivo.ativo, Atuador.topico, Atuador.unidade).all()
-        return atuadores
+        return Atuador.query.all()
 
     @staticmethod
     def obter_atuador_por_id(id_atuador):

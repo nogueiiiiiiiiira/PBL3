@@ -13,14 +13,6 @@
         </div>
 
         <div class="atuador-register-card-body">
-            {% with mensagens = get_flashed_messages(with_categories=true) %}
-            {% if mensagens %}
-                {% for categoria, mensagem in mensagens %}
-                    <script>alert('{{ mensagem }}');</script>
-                {% endfor %}
-            {% endif %}
-            {% endwith %}
-
             <form action="{{ url_for('atuador_.adicionar_atuador') }}" method="POST" class="atuador-form">
                 
                 

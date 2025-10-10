@@ -63,6 +63,8 @@
     width: 100%;
     border-collapse: collapse;
     font-size: 0.95rem;
+    border-radius: 10px;
+    overflow: hidden;
 }
 
 #view_users th,
@@ -72,11 +74,15 @@
     border-bottom: 1px solid #ddd;
 }
 
+#view_users th:not(:last-child),
+#view_users td:not(:last-child) {
+    border-right: 1px solid #ddd;
+}
+
 #view_users th {
-    background-color: #7B5FC5;
+    background-color: #2b6cb0;
     color: #fff;
     font-weight: 600;
-    border-radius: 10px 10px 0 0;
 }
 
 #view_users tr:hover {
@@ -111,11 +117,11 @@
 }
 
 #view_users td div[role="group"] a:first-child {
-    background-color: #7B5FC5; 
+    background-color: #2b6cb0; 
 }
 
 #view_users td div[role="group"] a:first-child:hover {
-    background-color: #653fa0;
+    background-color: #204f85;
     transform: translateY(-1px);
 }
 

@@ -16,7 +16,6 @@ def adicionar_atuador():
         unidade = request.form.get('unit')
         ativo = True if request.form.get('is_active') == 'on' else False
         Atuador.salvar_atuador(nome, marca, modelo, topico, unidade, ativo)
-        flash('Atuador cadastrado com sucesso!', 'success')
         return redirect(url_for('atuador_.listar_atuadores'))
     except Exception as erro:
         flash(f'Erro ao cadastrar atuador: {str(erro)}', 'error')
@@ -58,7 +57,7 @@ def atualizar_atuador(id_atuador):
             flash('Atuador não encontrado.', 'error')
             return redirect(url_for('atuador_.listar_atuadores'))
 
-@atuador_.route('/delete_atuador/<int:id_atuador>', methods=['POST'])
+@atuador_.route('/delete_atuador/<int:id_atuador>')
 def deletar_atuador(id_atuador):
     try:
         if Atuador.deletar_atuador(id_atuador):

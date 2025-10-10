@@ -20,8 +20,7 @@ class Sensor(db.Model):
 
     @staticmethod
     def obter_sensores():
-        sensores = Sensor.query.join(Dispositivo, Dispositivo.id == Sensor.dispositivos_id).add_columns(Dispositivo.id, Dispositivo.nome, Dispositivo.marca, Dispositivo.modelo, Dispositivo.ativo, Sensor.topico, Sensor.unidade).all()
-        return sensores
+        return Sensor.query.all()
 
     @staticmethod
     def obter_sensor_por_id(id_sensor):

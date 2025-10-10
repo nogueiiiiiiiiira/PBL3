@@ -8,12 +8,12 @@
 {% block content %}
 <div class="historico-page">
 
-    
+
     <div class="historico-header">
-        <h2>Consultar Histórico de Dados</h2>
+        <h2>Histórico de Sensores</h2>
     </div>
 
-    
+
     <div class="historico-card">
         <h5>Lista de Dados Registrados</h5>
 
@@ -25,41 +25,12 @@
         {% endif %}
         {% endwith %}
 
-        
-        <form action="{{ url_for('obter_dados') }}" method="POST" class="historico-form">
-            <div class="form-group">
-                <label for="sensor_id">Escolha o Sensor</label>
-                <select id="sensor_id" name="id" required>
-                    <option value="">Selecione um Sensor</option>
-                    {% for sensor in Sensores %}
-                    <option value="{{ sensor.id }}">Sensor {{ sensor.id }}</option>
-                    {% endfor %}
-                </select>
-            </div>
 
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="start_date">Data/Hora Inicial</label>
-                    <input type="datetime-local" id="start_date" name="start" required>
-                </div>
-                <div class="form-group">
-                    <label for="end_date">Data/Hora Final</label>
-                    <input type="datetime-local" id="end_date" name="end" required>
-                </div>
-            </div>
-
-            <div class="form-actions">
-                <button type="submit" class="btn-primary">Consultar Histórico</button>
-            </div>
-        </form>
-
-        
-        {% if read and read|length > 0 %}
         <div class="historico-table">
             <table id="view_read">
                 <thead>
                     <tr>
-                        <th>ID do Sensor</th>
+                        <th>Nome do Sensor</th>
                         <th>Valor</th>
                         <th>Data/Hora do Dado</th>
                     </tr>
@@ -67,21 +38,16 @@
                 <tbody>
                     {% for dados in read %}
                     <tr>
-                        <td>{{ dados.sensores_id }}</td>
+                        <td>{{ dados.sensor_name }}</td>
                         <td>{{ dados.value }}</td>
                         <td>{{ dados.read_datetime }}</td>
                     </tr>
                     {% endfor %}
                 </tbody>
             </table>
+            <br>
             <small>Total de registros encontrados: {{ read|length }}</small>
         </div>
-        {% elif comand is defined %}
-        <div class="historico-empty">
-            <h5>Nenhum registro encontrado</h5>
-            <p>Tente ajustar os filtros de busca ou verifique se há dados para o período selecionado.</p>
-        </div>
-        {% endif %}
 
     </div>
 </div>

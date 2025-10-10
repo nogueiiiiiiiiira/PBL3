@@ -33,13 +33,13 @@
             <tbody>
                 {% for atuador in atuadores %}
                 <tr>
-                    <td>{{ atuador.name }}</td>
-                    <td>{{ atuador.brand }}</td>
-                    <td>{{ atuador.model }}</td>
-                    <td>{{ atuador.topic }}</td>
-                    <td>{{ atuador.unit }}</td>
+                    <td>{{ atuador.dispositivo.nome }}</td>
+                    <td>{{ atuador.dispositivo.marca }}</td>
+                    <td>{{ atuador.dispositivo.modelo }}</td>
+                    <td>{{ atuador.topico }}</td>
+                    <td>{{ atuador.unidade }}</td>
                     <td>
-                        {% if atuador.is_active %}
+                        {% if atuador.dispositivo.ativo %}
                         <span>Ativo</span>
                         {% else %}
                         <span>Desativado</span>
@@ -47,8 +47,8 @@
                     </td>
                     <td>
                         <div role="group">
-                            <a href="http://localhost:8080/edit_atuador?id={{ atuador.id }}">Editar</a>
-                            <a href="http://localhost:8080/del_atuador?id={{ atuador.id }}" 
+                            <a href="{{ url_for('atuador_.atualizar_atuador', id_atuador=atuador.id) }}">Editar</a>
+                            <a href="{{ url_for('atuador_.deletar_atuador', id_atuador=atuador.id) }}"
                                onclick="return confirm('Tem certeza que deseja remover este atuador?')">Deletar</a>
                         </div>
                     </td>

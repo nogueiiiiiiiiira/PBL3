@@ -13,15 +13,7 @@
         </div>
 
         <div class="user-card-body">
-            {% with mensagens = get_flashed_messages(with_categories=true) %}
-            {% if mensagens %}
-                {% for categoria, mensagem in mensagens %}
-                    <script>alert('{{ mensagem }}');</script>
-                {% endfor %}
-            {% endif %}
-            {% endwith %}
-
-            <form action="{{ url_for('adicionar_usuario') }}" method="POST" class="user-form">
+            <form action="{{ url_for('usuarios.adicionar_usuario') }}" method="POST" class="user-form">
                 <div class="form-group">
                     <label>Nome Completo</label>
                     <input type="text" id="nome" name="nome" placeholder="Digite o nome completo: " required>
@@ -52,7 +44,7 @@
                     <button type="submit" class="user-btn user-btn-primary">
                         Cadastrar Usuário
                     </button>
-                    <a href="{{ url_for('listar_usuarios') }}" class="user-btn user-btn-secondary">
+                    <a href="{{ url_for('usuarios.listar_usuarios') }}" class="user-btn user-btn-secondary">
                         Voltar
                     </a>
                 </div>
@@ -63,4 +55,3 @@
 </div>
 
 {% endblock %}
-

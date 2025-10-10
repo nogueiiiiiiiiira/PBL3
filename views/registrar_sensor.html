@@ -13,14 +13,6 @@
         </div>
 
         <div class="sensor-card-body">
-            {% with mensagens = get_flashed_messages(with_categories=true) %}
-            {% if mensagens %}
-                {% for categoria, mensagem in mensagens %}
-                    <script>alert('{{ mensagem }}');</script>
-                {% endfor %}
-            {% endif %}
-            {% endwith %}
-
             <form action="{{ url_for('sensor_.adicionar_sensor') }}" method="POST" class="sensor-form">
                 
                 <div class="form-row">

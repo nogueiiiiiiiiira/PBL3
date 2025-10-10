@@ -6,72 +6,41 @@
 {% endblock %}
 
 {% block content %}
-<div>
-    <div>
-        <div>
-            <div>
-                <div>
-                    <h4>Atualizar Usuário</h4>
+<div class="user-register-page">
+    <div class="user-card">
+        <div class="user-card-header">
+            <h4>Atualizar Usuário</h4>
+        </div>
+
+        <div class="user-card-body">
+            <form action="{{ url_for('usuarios.atualizar_usuario', id_usuario=user.id) }}" method="POST" class="user-form">
+                <div class="form-group">
+                    <label for="nome">Nome Completo</label>
+                    <input type="text" id="nome" name="nome" value="{{ user.nome }}" required>
                 </div>
-                <div>
-                    {% with mensagens = get_flashed_messages(with_categories=true) %}
-                    {% if mensagens %}
-                    {% for categoria, mensagem in mensagens %}
-                    <script>alert('{{ mensagem }}');</script>
-                    {% endfor %}
-                    {% endif %}
-                    {% endwith %}
 
-                    {% for user in users %}
-                    <form action="{{ url_for('atualizar_usuario') }}" method="POST">
-                        <div>
-                            <label for="username">
-                                Nome Completo
-                            </label>
-                            <input type="text" id="username" name="username" value="{{ user.username }}" required>
-                        </div>
-
-                        <div>
-                            <label for="email">
-                                Email
-                            </label>
-                            <input type="email" id="email" name="email" value="{{ user.email }}" readonly>
-                        </div>
-
-                        <div>
-                            <label for="password">
-                                Nova Senha
-                            </label>
-                            <input type="password" id="password" name="password"
-                                placeholder="Digite uma nova senha (opcional)">
-                        </div>
-
-                        <div>
-                            <label for="role_type_">
-                                Função
-                            </label>
-                            <select id="role_type_" name="role_type_" required>
-                                {% for role in roles %}
-                                <option value="{{ role.name }}" {% if user.role_type=role.name %}selected{% endif %}>{{
-                                    role.name }}</option>
-                                {% endfor %}
-                            </select>
-                        </div>
-
-                        <div>
-                            <button type="submit">
-                                Atualizar Usuário
-                            </button>
-                            <a href="{{ url_for('listar_usuarios') }}">
-                                Voltar
-                            </a>
-                        </div>
-                    </form>
-                    {% endfor %}
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" value="{{ user.email }}" readonly>
                 </div>
-            </div>
+
+                <div class="form-group">
+                    <label for="senha">Nova Senha</label>
+                    <input type="password" id="senha" name="senha" placeholder="Digite uma nova senha (opcional)">
+                </div>
+
+                <div class="form-checkbox">
+                    <input type="checkbox" id="ativo" name="ativo" {% if user.ativo %}checked{% endif %}>
+                    <label for="ativo">Usuário Ativo</label>
+                </div>
+
+
+                <div class="form-actions">
+                    <button type="submit" class="user-btn user-btn-primary">Atualizar Usuário</button>
+                    <a href="{{ url_for('usuarios.listar_usuarios') }}" class="user-btn user-btn-secondary">Voltar</a>
+                </div>
+            </form>
         </div>
     </div>
 </div>
 {% endblock %}
-

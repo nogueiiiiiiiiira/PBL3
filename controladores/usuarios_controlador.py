@@ -13,8 +13,8 @@ def listar_usuarios():
     usuarios = Usuario.obter_usuarios()
     return render_template('users.html', usuarios=usuarios)
 
-@usuarios_bp.route('/atualizar_usuario_form/<int:id_usuario>')
-def atualizar_usuario_form(id_usuario):
+@usuarios_bp.route('/atualizar_usuario/<int:id_usuario>')
+def atualizar_usuario(id_usuario):
     usuario = Usuario.obter_usuario_por_id(id_usuario)
     roles = [{'name': 'admin'}, {'name': 'user'}]
     return render_template('atualizar_usuario.html', user=usuario, roles=roles)
@@ -37,14 +37,13 @@ def adicionar_usuario():
             return redirect(url_for('usuarios.cadastrar_usuario'))
         senha_hash = generate_password_hash(senha)
         usuario = Usuario.salvar_usuario(nome, email, senha_hash, ativo)
-        flash('Usuário cadastrado com sucesso!', 'success')
         return redirect(url_for('usuarios.listar_usuarios'))
     except Exception as e:
         flash(f'Erro ao cadastrar usuário: {str(e)}', 'error')
         return redirect(url_for('usuarios.cadastrar_usuario'))
 
 @usuarios_bp.route('/atualizar_usuario/<int:id_usuario>', methods=['POST'])
-def atualizar_usuario(id_usuario):
+def atualizar_usuario_post(id_usuario):
     try:
         nome = request.form.get('nome')
         email = request.form.get('email')

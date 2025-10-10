@@ -8,12 +8,12 @@
 {% block content %}
 <div class="historico-page">
 
-    
+
     <div class="historico-header">
-        <h2>Consultar Histórico de Comandos</h2>
+        <h2>Histórico de Atuadores</h2>
     </div>
 
-    
+
     <div class="historico-card">
         <h5>Lista de Comandos Registrados</h5>
 
@@ -25,63 +25,29 @@
         {% endif %}
         {% endwith %}
 
-        
-        <form action="{{ url_for('obter_comando') }}" method="POST" class="historico-form">
-            <div class="form-group">
-                <label for="atuador_id">Escolha o Atuador</label>
-                <select id="atuador_id" name="id" required>
-                    <option value="">Selecione um atuador</option>
-                    {% for atuador in Atuadores %}
-                    <option value="{{ atuador.id }}">Atuador {{ atuador.id }}</option>
-                    {% endfor %}
-                </select>
-            </div>
 
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="start_date">Data/Hora Inicial</label>
-                    <input type="datetime-local" id="start_date" name="start" required>
-                </div>
-                <div class="form-group">
-                    <label for="end_date">Data/Hora Final</label>
-                    <input type="datetime-local" id="end_date" name="end" required>
-                </div>
-            </div>
-
-            <div class="form-actions">
-                <button type="submit" class="btn-primary">Consultar Histórico</button>
-            </div>
-        </form>
-
-        
-        {% if read and read|length > 0 %}
         <div class="historico-table">
-            <table id="view_read">
+            <table id="view_write">
                 <thead>
                     <tr>
-                        <th>ID do Atuador</th>
+                        <th>Nome do Atuador</th>
                         <th>Valor</th>
                         <th>Data/Hora do Comando</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% for comando in read %}
+                    {% for comando in write %}
                     <tr>
-                        <td>{{ comando.atuadores_id }}</td>
+                        <td>{{ comando.actuator_name }}</td>
                         <td>{{ comando.value }}</td>
-                        <td>{{ comando.read_datetime }}</td>
+                        <td>{{ comando.write_datetime }}</td>
                     </tr>
                     {% endfor %}
                 </tbody>
             </table>
-            <small>Total de registros encontrados: {{ read|length }}</small>
+            <br>
+            <small>Total de registros encontrados: {{ write|length }}</small>
         </div>
-        {% elif comand is defined %}
-        <div class="historico-empty">
-            <h5>Nenhum registro encontrado</h5>
-            <p>Tente ajustar os filtros de busca ou verifique se há dados para o período selecionado.</p>
-        </div>
-        {% endif %}
 
     </div>
 </div>

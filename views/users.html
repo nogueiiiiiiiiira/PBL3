@@ -7,13 +7,13 @@
 
 {% block content %}
 <div class="users-page">
-    
+
     <div class="users-header">
         <h2>Gerenciamento de Usuários</h2>
         <a href="{{ url_for('cadastrar_usuario') }}">Adicionar Usuário</a>
     </div>
 
-    
+
     <div class="users-card">
         <h5>Lista de Usuários Cadastrados</h5>
 
@@ -25,7 +25,6 @@
                     <th>Nome</th>
                     <th>Email</th>
                     <th>Status</th>
-                    <th>Data de Cadastro</th>
                     <th>Ações</th>
                 </tr>
             </thead>
@@ -42,12 +41,11 @@
                         <span>Inativo</span>
                         {% endif %}
                     </td>
-                    <td>{{ usuario.id|strftime('%d/%m/%Y') if usuario.id else 'N/A' }}</td>
                     <td>
                         <div role="group">
-                            <a href="{{ url_for('atualizar_usuario_form', id_usuario=usuario.id) }}">Editar</a>
-                            <a href="{{ url_for('deletar_usuario', id_usuario=usuario.id) }}"
-                               onclick="return confirm('Tem certeza que deseja remover este usuário?')">Remover</a>
+                            <a href="{{ url_for('usuarios.atualizar_usuario', id_usuario=usuario.id) }}">Editar</a>
+                            <a href="{{ url_for('usuarios.deletar_usuario', id_usuario=usuario.id) }}"
+                                onclick="return confirm('Tem certeza que deseja remover este usuário?')">Remover</a>
                         </div>
                     </td>
                 </tr>
@@ -63,5 +61,3 @@
     </div>
 </div>
 {% endblock %}
-
-

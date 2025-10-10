@@ -58,7 +58,7 @@ def atualizar_sensor(id_sensor):
             flash('Sensor não encontrado.', 'error')
             return redirect(url_for('sensor_.listar_sensores'))
 
-@sensor_.route('/deletar_sensor/<int:id_sensor>', methods=['POST'])
+@sensor_.route('/deletar_sensor/<int:id_sensor>')
 def deletar_sensor(id_sensor):
     try:
         if Sensor.deletar_sensor(id_sensor):

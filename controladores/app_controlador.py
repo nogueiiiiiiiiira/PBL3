@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, flash, session, url_for
 from functools import wraps
+from werkzeug.security import generate_password_hash, check_password_hash
 from modelos.db import db, instance
 from controladores.sensores_controlador import sensor_
 from controladores.atuadores_controlador import atuador_
@@ -8,6 +9,7 @@ from controladores.auth_controlador import auth_bp
 from modelos.iot.devices import Dispositivo
 from modelos.iot.sensores import Sensor
 from modelos.iot.atuadores import Atuador
+from modelos.user.user import Usuario
 
 def login_required(f):
 
@@ -91,14 +93,29 @@ def create_app():
     @app.route('/historico_sensores')
     @login_required
     def historico_sensores():
-        sensores = [{'id': 1}, {'id': 2}, {'id': 3}]
-        return render_template('historico_sensores.html', sensores=sensores)
+        sensores = [{'id': 1, 'name': 'Sensor de Temperatura'}, {'id': 2, 'name': 'Sensor de Umidade'}, {'id': 3, 'name': 'Sensor de Pressão'}]
+        read = [
+            {'sensor_name': 'Sensor de Temperatura', 'value': 25.5, 'read_datetime': '2023-10-01 12:00:00'},
+            {'sensor_name': 'Sensor de Temperatura', 'value': 26.0, 'read_datetime': '2023-10-01 13:00:00'},
+            {'sensor_name': 'Sensor de Umidade', 'value': 60.0, 'read_datetime': '2023-10-01 12:30:00'},
+            {'sensor_name': 'Sensor de Umidade', 'value': 65.0, 'read_datetime': '2023-10-01 13:30:00'},
+            {'sensor_name': 'Sensor de Pressão', 'value': 1013.0, 'read_datetime': '2023-10-01 12:15:00'},
+            {'sensor_name': 'Sensor de Pressão', 'value': 1015.0, 'read_datetime': '2023-10-01 13:15:00'}
+        ]
+        return render_template('historico_sensores.html', read=read)
 
     @app.route('/historico_atuadores')
     @login_required
     def historico_atuadores():
-        atuadores = [{'id': 1}, {'id': 2}, {'id': 3}]
-        return render_template('historico_atuadores.html', atuadores=atuadores)
+        write = [
+            {'actuator_name': 'Atuador de Luz', 'value': 1, 'write_datetime': '2023-10-01 12:00:00'},
+            {'actuator_name': 'Atuador de Luz', 'value': 0, 'write_datetime': '2023-10-01 13:00:00'},
+            {'actuator_name': 'Atuador de Ventilador', 'value': 1, 'write_datetime': '2023-10-01 12:30:00'},
+            {'actuator_name': 'Atuador de Ventilador', 'value': 0, 'write_datetime': '2023-10-01 13:30:00'},
+            {'actuator_name': 'Atuador de Alarme', 'value': 1, 'write_datetime': '2023-10-01 12:15:00'},
+            {'actuator_name': 'Atuador de Alarme', 'value': 0, 'write_datetime': '2023-10-01 13:15:00'}
+        ]
+        return render_template('historico_atuadores.html', write=write)
 
     @app.route('/obter_dados', methods=['POST'])
     def obter_dados():
@@ -129,61 +146,7 @@ def create_app():
         atuadores = Atuador.obter_atuadores()
         return render_template('tables.html', devices=dispositivos, sensores=sensores, atuadores=atuadores)
 
-    @app.route('/adicionar_usuario', methods=['POST'])
-    def adicionar_usuario():
-        try:
-            nome = request.form['nome']
-            email = request.form['email']
-            senha = request.form['senha']
-            ativo = True if request.form.get('ativo') == 'on' else False
-            usuario_existente = Usuario.obter_usuario_por_email(email)
-            if usuario_existente:
-                flash('Email já cadastrado no sistema', 'error')
-                return redirect(url_for('cadastrar_usuario'))
-            senha_hash = generate_password_hash(senha)
-            usuario = Usuario.salvar_usuario(nome, email, senha_hash, ativo)
-            flash('Usuário cadastrado com sucesso!', 'success')
-            return redirect(url_for('listar_usuarios'))
-        except Exception as e:
-            flash(f'Erro ao cadastrar usuário: {str(e)}', 'error')
-            return redirect(url_for('cadastrar_usuario'))
 
-    @app.route('/atualizar_usuario/<int:id_usuario>', methods=['POST'])
-    def atualizar_usuario(id_usuario):
-        try:
-            nome = request.form.get('nome')
-            email = request.form.get('email')
-            senha = request.form.get('senha')
-            ativo = True if request.form.get('ativo') == 'on' else False
-            dados_atualizacao = {}
-            if nome:
-                dados_atualizacao['nome'] = nome
-            if email:
-                dados_atualizacao['email'] = email
-            if senha:
-                dados_atualizacao['senha'] = generate_password_hash(senha)
-            dados_atualizacao['ativo'] = ativo
-            usuario = Usuario.atualizar_usuario(id_usuario, **dados_atualizacao)
-            if usuario:
-                flash('Usuário atualizado com sucesso!', 'success')
-            else:
-                flash('Usuário não encontrado', 'error')
-            return redirect(url_for('listar_usuarios'))
-        except Exception as e:
-            flash(f'Erro ao atualizar usuário: {str(e)}', 'error')
-            return redirect(url_for('listar_usuarios'))
-
-    @app.route('/deletar_usuario/<int:id_usuario>')
-    def deletar_usuario(id_usuario):
-        try:
-            if Usuario.deletar_usuario(id_usuario):
-                flash('Usuário removido com sucesso!', 'success')
-            else:
-                flash('Usuário não encontrado', 'error')
-            return redirect(url_for('listar_usuarios'))
-        except Exception as e:
-            flash(f'Erro ao remover usuário: {str(e)}', 'error')
-            return redirect(url_for('listar_usuarios'))
 
     @app.route('/validar_usuario', methods=['POST'])
     def validar_usuario():
@@ -209,6 +172,5 @@ def create_app():
     @app.route('/desconectar')
     def desconectar():
         session.clear()
-        flash('Você foi desconectado com sucesso.', 'info')
         return redirect(url_for('login'))
     return app

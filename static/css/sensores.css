@@ -57,48 +57,54 @@
 }
 
 
-#view_sensors {
+#view_sensores {
     width: 100%;
     border-collapse: collapse;
     font-size: 0.95rem;
+    border-radius: 10px;
+    overflow: hidden;
 }
 
-#view_sensors th,
-#view_sensors td {
+#view_sensores th,
+#view_sensores td {
     padding: 12px 15px;
     text-align: left;
     border-bottom: 1px solid #ddd;
 }
 
-#view_sensors th {
-    background-color: #7B5FC5;
-    color: #fff;
-    font-weight: 600;
-    border-radius: 10px 10px 0 0;
+#view_sensores th:not(:last-child),
+#view_sensores td:not(:last-child) {
+    border-right: 1px solid #ddd;
 }
 
-#view_sensors tr:hover {
+#view_sensores th {
+    background-color: #1b8a80;
+    color: #fff;
+    font-weight: 600;
+}
+
+#view_sensores tr:hover {
     background-color: rgba(123, 95, 197, 0.1);
 }
 
-#view_sensors td span {
+#view_sensores td span {
     padding: 5px 10px;
     border-radius: 15px;
     font-weight: 500;
 }
 
-#view_sensors td span:nth-child(1) {
+#view_sensores td span:nth-child(1) {
     background-color: #d1f7d1; 
     color: #155724;
 }
 
-#view_sensors td span:nth-child(2) {
+#view_sensores td span:nth-child(2) {
     background-color: #f8d7da; 
     color: #721c24;
 }
 
 
-#view_sensors td div[role="group"] a {
+#view_sensores td div[role="group"] a {
     padding: 6px 12px;
     border-radius: 15px;
     text-decoration: none;
@@ -108,20 +114,20 @@
     transition: background 0.3s ease, transform 0.2s ease;
 }
 
-#view_sensors td div[role="group"] a:first-child {
-    background-color: #7B5FC5; 
+#view_sensores td div[role="group"] a:first-child {
+    background-color: #1b8a80; 
 }
 
-#view_sensors td div[role="group"] a:first-child:hover {
-    background-color: #653fa0;
+#view_sensores td div[role="group"] a:first-child:hover {
+    background-color: #157369;
     transform: translateY(-1px);
 }
 
-#view_sensors td div[role="group"] a:last-child {
+#view_sensores td div[role="group"] a:last-child {
     background-color: #dc3545; 
 }
 
-#view_sensors td div[role="group"] a:last-child:hover {
+#view_sensores td div[role="group"] a:last-child:hover {
     background-color: #b02a37;
     transform: translateY(-1px);
 }
@@ -138,4 +144,3 @@
     font-size: 1.3rem;
     margin-bottom: 10px;
 }
-

@@ -46,8 +46,14 @@ function handleClick(cb, id) {
         })
     })
     .then(response => response.json())
-    .then(data => console.log(data))
-    .catch(error => console.error('Error:', error));
+    .then(data => {
+        console.log(data);
+        alert('Mensagem enviada com sucesso!');
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Erro ao enviar mensagem.');
+    });
 }
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -70,15 +76,6 @@ document.addEventListener('DOMContentLoaded', function() {
             handleClick(this, this.id);
         });
     }
-
-    const deleteLinks = document.querySelectorAll('a[href*="deletar_usuario"]');
-    deleteLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            if (!confirm('Tem certeza que deseja remover este usuário?')) {
-                e.preventDefault();
-            }
-        });
-    });
 
     const dropdownLink = document.getElementById('navbarDropdownMenuLink');
     if (dropdownLink) {

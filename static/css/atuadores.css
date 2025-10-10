@@ -57,48 +57,54 @@
 }
 
 
-#view_atuators {
+#view_atuadores {
     width: 100%;
     border-collapse: collapse;
     font-size: 0.95rem;
+    border-radius: 10px;
+    overflow: hidden;
 }
 
-#view_atuators th,
-#view_atuators td {
+#view_atuadores th,
+#view_atuadores td {
     padding: 12px 15px;
     text-align: left;
     border-bottom: 1px solid #ddd;
 }
 
-#view_atuators th {
+#view_atuadores th:not(:last-child),
+#view_atuadores td:not(:last-child) {
+    border-right: 1px solid #ddd;
+}
+
+#view_atuadores th {
     background-color: #7B5FC5;
     color: #fff;
     font-weight: 600;
-    border-radius: 10px 10px 0 0;
 }
 
-#view_atuators tr:hover {
+#view_atuadores tr:hover {
     background-color: rgba(123, 95, 197, 0.1);
 }
 
-#view_atuators td span {
+#view_atuadores td span {
     padding: 5px 10px;
     border-radius: 15px;
     font-weight: 500;
 }
 
-#view_atuators td span:nth-child(1) {
+#view_atuadores td span:nth-child(1) {
     background-color: #d1f7d1; 
     color: #155724;
 }
 
-#view_atuators td span:nth-child(2) {
+#view_atuadores td span:nth-child(2) {
     background-color: #f8d7da; 
     color: #721c24;
 }
 
 
-#view_atuators td div[role="group"] a {
+#view_atuadores td div[role="group"] a {
     padding: 6px 12px;
     border-radius: 15px;
     text-decoration: none;
@@ -108,20 +114,20 @@
     transition: background 0.3s ease, transform 0.2s ease;
 }
 
-#view_atuators td div[role="group"] a:first-child {
+#view_atuadores td div[role="group"] a:first-child {
     background-color: #7B5FC5; 
 }
 
-#view_atuators td div[role="group"] a:first-child:hover {
+#view_atuadores td div[role="group"] a:first-child:hover {
     background-color: #653fa0;
     transform: translateY(-1px);
 }
 
-#view_atuators td div[role="group"] a:last-child {
+#view_atuadores td div[role="group"] a:last-child {
     background-color: #dc3545; 
 }
 
-#view_atuators td div[role="group"] a:last-child:hover {
+#view_atuadores td div[role="group"] a:last-child:hover {
     background-color: #b02a37;
     transform: translateY(-1px);
 }
@@ -138,4 +144,3 @@
     font-size: 1.3rem;
     margin-bottom: 10px;
 }
-

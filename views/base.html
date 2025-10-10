@@ -57,6 +57,15 @@
     </div>
 
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <script>
+    {% for category, message in messages %}
+    alert({{ message|tojson }});
+    {% endfor %}
+    </script>
+    {% endif %}
+    {% endwith %}
 </body>
 
 </html>
