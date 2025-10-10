@@ -1,0 +1,166 @@
+.user-register-page {
+    min-height: 100vh;
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+
+
+.user-card {
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 8px 35px rgba(0, 0, 0, 0.35);
+    
+    width: 100%;
+    max-width: 550px;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.user-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 45px rgba(0, 0, 0, 0.45);
+}
+
+
+
+.user-card-header {
+    background: linear-gradient(135deg, #2b6cb0, #204f85);
+    
+    color: #fff;
+    padding: 18px 25px;
+    border-radius: 20px 20px 0 0;
+}
+
+.user-card-header h4 {
+    margin: 0;
+    font-weight: 600;
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+
+
+.user-card-body {
+    padding: 30px 25px;
+}
+
+
+
+
+
+
+
+.user-form .form-row {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.user-form .form-group {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    margin-bottom: 18px;
+}
+
+.user-form label {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 6px;
+}
+
+.user-form input[type="text"],
+.user-form input[type="email"],
+.user-form input[type="password"] {
+    padding: 12px 14px;
+    border: 1.5px solid #ccc;
+    border-radius: 10px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.user-form input:focus {
+    border-color: #2b6cb0;
+    box-shadow: 0 0 5px rgba(43, 108, 176, 0.4);
+}
+
+.user-form small {
+    font-size: 0.85rem;
+    color: #666;
+    margin-top: 4px;
+}
+
+.form-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+    color: #444;
+}
+
+.form-checkbox input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #2b6cb0;
+    position: relative;
+    top: -1px;
+    
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.form-checkbox input[type="checkbox"]:hover {
+    transform: scale(1.1);
+}
+
+.form-actions {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.user-btn-primary,
+.user-btn-secondary {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 25px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.user-btn-primary {
+    background-color: #2b6cb0;
+    color: #fff;
+}
+
+.user-btn-primary:hover {
+    background-color: #204f85;
+    transform: translateY(-2px);
+}
+
+.user-btn-secondary {
+    background-color: #6c757d;
+    color: #fff;
+    margin-left: 10px;
+}
+
+.user-btn-secondary:hover {
+    background-color: #565e64;
+    transform: translateY(-2px);
+}
+
+.form-checkbox label {
+    position: relative;
+    top: 2px;
+    cursor: pointer;
+}

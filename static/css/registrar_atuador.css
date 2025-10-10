@@ -1,0 +1,195 @@
+.atuador-register-page {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+
+
+.atuador-register-card {
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 8px 35px rgba(0, 0, 0, 0.35);
+    width: 100%;
+    max-width: 550px;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.atuador-register-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 45px rgba(0, 0, 0, 0.45);
+}
+
+
+
+.atuador-register-card-header {
+    background: #7B5FC5; 
+    color: #fff;
+    padding: 18px 25px;
+    border-radius: 20px 20px 0 0;
+}
+
+.atuador-register-card-header h4 {
+    margin: 0;
+    font-weight: 600;
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+
+
+.atuador-register-card-body {
+    padding: 30px 25px;
+}
+
+
+
+.atuador-alert {
+    padding: 15px 18px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+    position: relative;
+}
+
+.atuador-alert.alert-success {
+    background-color: #e6d9f7;
+    color: #4b1f7f;
+    border: 1px solid #c5a5e5;
+}
+
+.atuador-alert.alert-error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.atuador-alert-close {
+    position: absolute;
+    right: 10px;
+    top: 5px;
+    background: none;
+    border: none;
+    font-size: 1.3rem;
+    color: inherit;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.atuador-alert-close:hover {
+    transform: scale(1.2);
+}
+
+
+
+.atuador-form .form-row {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.atuador-form .form-group {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    margin-bottom: 18px;
+}
+
+.atuador-form label {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 6px;
+}
+
+.atuador-form input[type="text"],
+.atuador-form select {
+    padding: 12px 14px;
+    border: 1.5px solid #ccc;
+    border-radius: 10px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.atuador-form input:focus,
+.atuador-form select:focus {
+    border-color: #7B5FC5;
+    box-shadow: 0 0 5px rgba(123, 95, 197, 0.4);
+}
+
+.atuador-form small {
+    font-size: 0.85rem;
+    color: #666;
+    margin-top: 4px;
+}
+
+.form-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+    color: #444;
+}
+
+.form-checkbox input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #7B5FC5;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    top: -5px;
+}
+
+.form-checkbox input[type="checkbox"]:hover {
+    transform: scale(1.1);
+}
+
+.form-actions {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.btn-primary,
+.btn-secondary {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 25px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-primary {
+    background-color: #7B5FC5;
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background-color: #653fa0;
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    color: #fff;
+    margin-left: 10px;
+}
+
+.btn-secondary:hover {
+    background-color: #565e64;
+    transform: translateY(-2px);
+}
+
+.form-checkbox label {
+    position: relative;
+    top: 2px;
+    cursor: pointer;
+}

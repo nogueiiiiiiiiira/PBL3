@@ -1,0 +1,126 @@
+.home-page {
+    text-align: center;
+    padding: 3rem 1rem;
+}
+
+.home-page h1 {
+    margin-bottom: 2.5rem;
+    font-size: 2.75rem;
+    font-weight: 700;
+    color: #343a40;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.75rem;
+    margin-bottom: 3.5rem;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    background: #ffffff;
+    padding: 1.75rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2);
+    border: 1px solid #dee2e6;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    text-align: center;
+}
+
+.card:hover {
+    transform: translateY(-0.5rem);
+    box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.4);
+}
+
+.card i {
+    font-size: 3.25rem;
+    background: linear-gradient(45deg, #6a4bb3, #45297a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 1rem;
+    transition: transform 0.3s ease;
+}
+
+.card:hover i {
+    transform: rotate(-10deg) scale(1.1);
+}
+
+.card h5 {
+    margin-bottom: 0.75rem;
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: #495057;
+}
+
+.card p {
+    margin-bottom: 1.25rem;
+    color: #6c757d;
+    font-size: 0.9rem;
+}
+
+.card a {
+    margin-top: auto;
+    display: inline-block;
+    padding: 0.55rem 1.25rem;
+    background: linear-gradient(45deg, #6a4bb3, #45297a);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.12);
+}
+
+.card a:hover {
+    background: linear-gradient(45deg, #45297a, #6a4bb3);
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+}
+
+.status-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.25rem;
+}
+
+.status-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #ffffff;
+    padding: 1.25rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.08);
+    border: 1px solid #dee2e6;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.status-card:hover {
+    transform: translateY(-0.25rem);
+    box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.15);
+}
+
+.status-card i {
+    font-size: 2.25rem;
+    background: linear-gradient(45deg, #28a745, #1c7c3a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.5rem;
+    transition: transform 0.3s ease;
+}
+
+.status-card:hover i {
+    transform: scale(1.15) rotate(5deg);
+}
+
+.status-card p {
+    margin: 0;
+    font-weight: 500;
+    color: #495057;
+}

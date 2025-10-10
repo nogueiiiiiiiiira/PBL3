@@ -1,0 +1,143 @@
+
+
+.users-page {
+    min-height: 100vh;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+
+.users-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.users-header h2 {
+    margin: 0;
+    font-size: 1.8rem;
+    color: #333;
+}
+
+.users-header a {
+    padding: 10px 20px;
+    background-color: #2b6cb0; 
+    color: #fff;
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: 500;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.users-header a:hover {
+    background-color: #204f85;
+    transform: translateY(-2px);
+}
+
+
+.users-card {
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 8px 35px rgba(0, 0, 0, 0.35);
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    padding: 20px;
+}
+
+.users-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 45px rgba(0, 0, 0, 0.45);
+}
+
+.users-card h5 {
+    margin: 0 0 15px 0;
+    font-size: 1.3rem;
+    color: #444;
+}
+
+
+#view_users {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+}
+
+#view_users th,
+#view_users td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+#view_users th {
+    background-color: #7B5FC5;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 10px 10px 0 0;
+}
+
+#view_users tr:hover {
+    background-color: rgba(123, 95, 197, 0.1);
+}
+
+#view_users td span {
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-weight: 500;
+}
+
+#view_users td span:nth-child(1) {
+    background-color: #d1f7d1; 
+    color: #155724;
+}
+
+#view_users td span:nth-child(2) {
+    background-color: #f8d7da; 
+    color: #721c24;
+}
+
+
+#view_users td div[role="group"] a {
+    padding: 6px 12px;
+    border-radius: 15px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    margin-right: 5px;
+    color: #fff;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+#view_users td div[role="group"] a:first-child {
+    background-color: #7B5FC5; 
+}
+
+#view_users td div[role="group"] a:first-child:hover {
+    background-color: #653fa0;
+    transform: translateY(-1px);
+}
+
+#view_users td div[role="group"] a:last-child {
+    background-color: #dc3545; 
+}
+
+#view_users td div[role="group"] a:last-child:hover {
+    background-color: #b02a37;
+    transform: translateY(-1px);
+}
+
+
+.users-empty {
+    text-align: center;
+    padding: 30px;
+    font-size: 1rem;
+    color: #666;
+}
+
+.users-empty h5 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+}
+

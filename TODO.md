@@ -1,0 +1,15 @@
+- [x] Create static/css/pages/ directory
+- [x] Create base.css with general styles
+- [x] Create home.css: base + home styles (.home-page, .cards-container, .card, .status-container, .status-card)
+- [x] Create login.css: base + login styles (body.login-page, .login-container, .alert)
+- [x] Create registrar_usuario.css: base + user-register styles (.user-register-page, .user-card, etc.)
+- [x] Create registrar_sensor.css: base + sensor-register styles (.sensor-register-page, .sensor-card, etc.)
+- [x] Create registrar_atuador.css: base + atuador-register styles (.atuador-register-page, .atuador-register-card, etc.)
+- [x] Create remover_atuador.css: base + atuador-page styles (.atuador-page, .atuador-card, etc.)
+- [x] Create publicar.css: base + publicar styles (body.modulo-iot-page, .modulo-iot-page)
+- [x] Create tr.css: base + tr styles (.real-time-page, .cards-container, .card, .footer-note)
+- [ ] For other HTMLs without specific styles (atuadores.html, atualizar_*.html, historico_*.html, sensores.html, users.html, base1.html): create CSS with just base
+- [x] Update base.html: remove link to style.css
+- [x] Update each extending HTML: add link to their CSS in title block (done for home, registrar_usuario, atuadores, sensores)
+- [x] Update login.html: change link to login.css
+- [ ] Test the app to ensure styles work

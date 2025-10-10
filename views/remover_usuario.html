@@ -1,13 +1,41 @@
-<html>
-    <body>
-    <form action="http://localhost:8080/del_user" method="post">
-        <select name="user" class="Input">
-              {% for key, value  in devices.items() %}
-                <option>{{ key }}</option>
-              {% endfor %}
-              <p><input type = "submit" value = "Deletar" /></p>
-        </select>
-    </form>
-    <p>Voltar para <a href="/home">página inicial</a>!</p>
-    </body>
-</html>
+{% extends "base.html" %}
+
+{% block title %}<title>Remover Usuário</title>{% endblock %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/remover_usuario.css') }}" />
+
+{% block content %}
+<div>
+    <div>
+        <div>
+            <div>
+                <div>
+                    <h4> Remover Usuário</h4>
+                </div>
+                <div>
+                    <form action="{{ url_for('deletar_usuario_form') }}" method="POST">
+                        <div>
+                            <label for="user">Selecione o Usuário</label>
+                            <select name="user" id="user" required>
+                                {% for key, value in devices.items() %}
+                                <option value="{{ key }}">{{ value }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div>
+                            <button type="submit">
+                                Deletar Usuário
+                            </button>
+                            <a href="{{ url_for('listar_usuarios') }}">
+                                Voltar
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+

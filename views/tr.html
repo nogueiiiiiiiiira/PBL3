@@ -3,43 +3,36 @@
 {% block title %}
 <title>Tempo Real - Sistema IoT</title>
 <meta http-equiv="refresh" content="5">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/tr.css') }}" />
 {% endblock %}
 
 {% block content %}
-<div class="container mt-4">
-    <div class="row">
-        <div class="col-12">
-            <h2 class="mb-4">Dados em Tempo Real</h2>
-            <p>Essa página atualiza automaticamente a cada 5 segundos</p>
-        </div>
+<div class="real-time-page">
+    <div class="header">
+        <h1>Dados em Tempo Real</h1>
     </div>
 
-    <div class="row">
+    <div class="cards-container">
         {% for chave, valor in values.items() %}
-            <div class="col-md-6 mb-4">
-                <div class="card">
-                    <div class="card-body text-center">
-                        {% if chave == 'temperatura' %}
-                            <img src="{{ url_for('static', filename='img/imagem3.png') }}" width="80" height="80" alt="Temperatura" class="mb-3">
-                            <h5 class="card-title">Temperatura</h5>
-                            <h3>{{ valor }} °C</h3>
-                        {% else %}
-                            <img src="{{ url_for('static', filename='img/imagem4.png') }}" width="80" height="80" alt="Umidade" class="mb-3">
-                            <h5 class="card-title">Umidade</h5>
-                            <h3>{{ valor }} %</h3>
-                        {% endif %}
-                    </div>
-                </div>
-            </div>
+        <div class="card">
+            {% if chave == 'temperatura' %}
+            <img src="{{ url_for('static', filename='img/imagem3.png') }}" alt="Temperatura">
+            <h5>Temperatura</h5>
+            <h3>{{ valor }} °C</h3>
+            {% else %}
+            <img src="{{ url_for('static', filename='img/imagem4.png') }}" alt="Umidade">
+            <h5>Umidade</h5>
+            <h3>{{ valor }} %</h3>
+            {% endif %}
+        </div>
         {% endfor %}
     </div>
 
-    <div class="row mt-4">
-        <div class="col-12">
-            <div class="alert alert-info">
-                <strong>Nota:</strong> Os valores são simulados para demonstração. Em um sistema real, estes dados viriam dos sensores IoT conectados.
-            </div>
-        </div>
+    <div class="footer-note">
+        <strong>Nota:</strong> Os valores são simulados para demonstração. Em um sistema real, estes dados
+        viriam dos sensores IoT conectados.
     </div>
 </div>
 {% endblock %}
+
+

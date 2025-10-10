@@ -1,50 +1,69 @@
-{% extends"base.html" %}
-{% block content%}
-<div class="vertical-center">
-  <div class="container view">
-    <div class="justify-content-center">
-      {% if atuadores|length> 0 %}
-      <table id="view_atuadores" class="table table-striped table-bordered" style="width:100%">
-        <p>Atuatores:</p>
-        <thead>
-          <tr>
-            <th>atuador</th>
-            <th>Marca</th>
-            <th>Modelo</th>
-            <th>Tópico</th>
-            <th>Unidade</th>
-            <th>Ativo?</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for atuador in atuadores %}
-          <tr>
-            <td>{{ atuador.name }}</td>
-            <td>{{ atuador.brand }}</td>
-            <td>{{ atuador.model }}</td>
-            <td>{{ atuador.topic }}</td>
-            <td>{{ atuador.unit }}</td>
-            {% if atuador.is_active == true %}
-            <td>Ativo</td>
-            {% else %}
-            <td>Desativado</td>
-            {% endif %}
-            <td><a href="http://localhost:8080/edit_atuador?id={{atuador.id}}">Editar</a></td>
-            <td><a href="http://localhost:8080/del_atuador?id={{atuador.id}}">Deletar</a></td>
+{% extends "base.html" %}
 
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-      <a href="{{ url_for('atuador_.registrar_atuador') }}" class="btn btn-primary">Adicionar Atuador</a>
-      <a href="{{ url_for('inicio') }}" class="btn btn-secondary">Retornar</a>
-      {% else %}
-      <p>Ainda não há atuadores registrados!</p>
-      <a href="{{ url_for('atuador_.registrar_atuador') }}" class="btn btn-primary">Adicionar Atuador</a>
-      {% endif %}
+{% block title %}
+<title>Atuadores - Sistema IoT</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/atuadores.css') }}" />
+{% endblock %}
+
+{% block content %}
+<div class="atuators-page">
+    
+    <div class="atuators-header">
+        <h2>Gerenciamento de Atuadores</h2>
+        <a href="{{ url_for('cadastrar_atuador') }}" class="btn-primary">Adicionar Atuador</a>
     </div>
-  </div>
+
+    
+    <div class="atuators-card">
+        <h5>Lista de Atuadores Cadastrados</h5>
+
+        {% if atuadores|length > 0 %}
+        <table id="view_atuadores">
+            <thead>
+                <tr>
+                    <th>Atuador</th>
+                    <th>Marca</th>
+                    <th>Modelo</th>
+                    <th>Tópico</th>
+                    <th>Unidade</th>
+                    <th>Ativo?</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for atuador in atuadores %}
+                <tr>
+                    <td>{{ atuador.name }}</td>
+                    <td>{{ atuador.brand }}</td>
+                    <td>{{ atuador.model }}</td>
+                    <td>{{ atuador.topic }}</td>
+                    <td>{{ atuador.unit }}</td>
+                    <td>
+                        {% if atuador.is_active %}
+                        <span>Ativo</span>
+                        {% else %}
+                        <span>Desativado</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <div role="group">
+                            <a href="http://localhost:8080/edit_atuador?id={{ atuador.id }}">Editar</a>
+                            <a href="http://localhost:8080/del_atuador?id={{ atuador.id }}" 
+                               onclick="return confirm('Tem certeza que deseja remover este atuador?')">Deletar</a>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <div class="atuators-empty">
+            <h5>Nenhum atuador cadastrado</h5>
+            <p>Comece adicionando o primeiro atuador do sistema.</p>
+        </div>
+        {% endif %}
+    </div>
 </div>
+{% endblock %}
 
 
-{% endblock%}

@@ -1,0 +1,171 @@
+
+
+.historico-page {
+    min-height: 100vh;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    font-family: 'Segoe UI';
+}
+
+
+.historico-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.historico-header h2 {
+    margin: 0;
+    font-size: 1.8rem;
+    color: #333;
+}
+
+.historico-header .btn-primary {
+    padding: 10px 20px;
+    border-radius: 25px;
+    background-color: #1b8a80; 
+    color: #fff;
+    text-decoration: none;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.historico-header .btn-primary:hover {
+    background-color: #157369; 
+    transform: translateY(-2px);
+}
+
+
+.historico-card {
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 8px 35px rgba(0, 0, 0, 0.35);
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    padding: 20px;
+}
+
+.historico-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 45px rgba(0, 0, 0, 0.45);
+}
+
+.historico-card h5 {
+    margin: 0 0 15px 0;
+    font-size: 1.3rem;
+    color: #444;
+}
+
+
+
+
+
+.historico-form .form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 18px;
+}
+
+.historico-form label {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 6px;
+}
+
+.historico-form input[type="datetime-local"],
+.historico-form select {
+    padding: 12px 14px;
+    border: 1.5px solid #ccc;
+    border-radius: 10px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.historico-form input:focus,
+.historico-form select:focus {
+    border-color: #1b8a80; 
+    box-shadow: 0 0 5px rgba(32, 201, 151, 0.4); 
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+
+.form-actions {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.form-actions .btn-primary {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 25px;
+    font-size: 1rem;
+    cursor: pointer;
+    background-color: #1b8a80; 
+    color: #fff;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.form-actions .btn-primary:hover {
+    background-color: #157369; 
+    transform: translateY(-2px);
+}
+
+
+.historico-table {
+    margin-top: 25px;
+    overflow-x: auto;
+}
+
+#view_read {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#view_read th,
+#view_read td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+#view_read th {
+    background-color: #1b8a80; 
+    color: #fff;
+    font-weight: 600;
+    border-radius: 10px 10px 0 0;
+}
+
+#view_read tr:hover {
+    background-color: rgba(32, 201, 151, 0.1); 
+}
+
+.historico-empty {
+    text-align: center;
+    padding: 30px;
+    font-size: 1rem;
+    color: #666;
+}
+
+.historico-empty h5 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+}
+
+
+.historico-form select {
+    -webkit-appearance: none;  
+    -moz-appearance: none;     
+    appearance: none;          
+    background: #fff;          
+    background-image: none;    
+    padding-right: 12px;       
+    cursor: pointer;
+}
+

@@ -1,30 +1,77 @@
-{% extends"base.html" %}
-{% block content%} 
-<div class="vertical-center">
-    <div class="container">
-        <div class="card">
-            <div class="card-header">
-                <div class="card-body">
-                    {%for user in users%}
-                        <form action = "http://localhost:8080/update_user" method = "post">
-                            <p>Nome:</p>
-                            <p><input type = "text" name = "username" value= "{{user.username}}" required/></p>
-                            <p>E-mail:</p>
-                            <p><input type = "text" name = "email" value= "{{user.email}}" readonly /></p>
-                            <p>Senha:</p>
-                            <p><input type = "text" name = "password" placeholder="*********" required/></p>
-                            <p>Função:</p>
-                            <select name="role_type_" class="Input">
+{% extends "base.html" %}
+
+{% block title %}
+<title>Atualizar Usuário - Sistema IoT</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/atualizar_usuario.css') }}" />
+{% endblock %}
+
+{% block content %}
+<div>
+    <div>
+        <div>
+            <div>
+                <div>
+                    <h4>Atualizar Usuário</h4>
+                </div>
+                <div>
+                    {% with mensagens = get_flashed_messages(with_categories=true) %}
+                    {% if mensagens %}
+                    {% for categoria, mensagem in mensagens %}
+                    <script>alert('{{ mensagem }}');</script>
+                    {% endfor %}
+                    {% endif %}
+                    {% endwith %}
+
+                    {% for user in users %}
+                    <form action="{{ url_for('atualizar_usuario') }}" method="POST">
+                        <div>
+                            <label for="username">
+                                Nome Completo
+                            </label>
+                            <input type="text" id="username" name="username" value="{{ user.username }}" required>
+                        </div>
+
+                        <div>
+                            <label for="email">
+                                Email
+                            </label>
+                            <input type="email" id="email" name="email" value="{{ user.email }}" readonly>
+                        </div>
+
+                        <div>
+                            <label for="password">
+                                Nova Senha
+                            </label>
+                            <input type="password" id="password" name="password"
+                                placeholder="Digite uma nova senha (opcional)">
+                        </div>
+
+                        <div>
+                            <label for="role_type_">
+                                Função
+                            </label>
+                            <select id="role_type_" name="role_type_" required>
                                 {% for role in roles %}
-                                    <option>{{role.name}}</option>
+                                <option value="{{ role.name }}" {% if user.role_type=role.name %}selected{% endif %}>{{
+                                    role.name }}</option>
                                 {% endfor %}
                             </select>
-                    {%endfor%}
-                        <p><input type = "submit" value = "Alterar" /></p>
+                        </div>
+
+                        <div>
+                            <button type="submit">
+                                Atualizar Usuário
+                            </button>
+                            <a href="{{ url_for('listar_usuarios') }}">
+                                Voltar
+                            </a>
+                        </div>
                     </form>
+                    {% endfor %}
                 </div>
             </div>
         </div>
     </div>
 </div>
-{% endblock%}
+{% endblock %}
+

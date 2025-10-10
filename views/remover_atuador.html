@@ -1,15 +1,33 @@
-<html>
+{% extends "base.html" %}
 
-<body>
-  <form action="http://localhost:8080/del_atuador" method="post">
-    <select name="atuador" class="Input">
-      {% for key, value in devices.items() %}
-      <option>{{ key }}</option>
-      {% endfor %}
-      <p><input type="submit" value="Deletar" /></p>
-    </select>
-  </form>
-  <p>Voltar para <a href="/home">página inicial</a>!</p>
-</body>
+{% block title %}<title>Remover Atuador</title>{% endblock %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/remover_atuador.css') }}" />
 
-</html>
+{% block content %}
+<div class="atuador-page">
+    <div class="atuador-card">
+        <div class="atuador-card-header">
+            <h4>>Remover Atuador</h4>
+        </div>
+        <div class="atuador-card-body">
+            <form action="{{ url_for('deletar_atuador_form') }}" method="POST" class="atuador-form">
+                <div class="form-group">
+                    <label for="atuador">Selecione o Atuador</label>
+                    <select name="atuador" id="atuador" required>
+                        {% for key, value in devices.items() %}
+                        <option value="{{ key }}">{{ value }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-actions text-center">
+                    <button type="submit" class="atuador-btn atuador-btn-primary"> Deletar Atuador </button>
+                    <a href="{{ url_for('atuadores') }}" class="atuador-btn atuador-btn-secondary"> Voltar </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
