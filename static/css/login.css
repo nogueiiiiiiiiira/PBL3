@@ -2,23 +2,29 @@ body.login-page {
     min-height: 100vh;
     margin: 0;
     padding: 0;
-    background-color: #000; 
     font-family: 'Segoe UI';
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #f5f5f5;
 }
 
 .login-container {
-    background-color: #fff; 
+    background-color: #fff;
     border-radius: 20px;
-    box-shadow: 0 8px 35px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.45);
     padding: 40px 30px;
     width: 100%;
     max-width: 400px;
     display: flex;
     flex-direction: column;
     gap: 20px;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.login-container:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 15px 55px rgba(0, 0, 0, 0.6);
 }
 
 .login-container h3 {
@@ -27,8 +33,6 @@ body.login-page {
     color: #333;
     text-align: center;
 }
-
-
 
 .login-container form {
     display: flex;
@@ -47,8 +51,12 @@ body.login-page {
 }
 
 .login-container input:focus {
-    border-color: #7B5FC5; 
-        box-shadow: 0 0 5px rgba(123, 95, 197, 0.4); 
+    border-color: #7B5FC5;
+    box-shadow: 0 0 6px rgba(123, 95, 197, 0.5);
+}
+
+.login-container input::placeholder {
+    color: #999;
 }
 
 .login-container button {
@@ -57,17 +65,13 @@ body.login-page {
     border-radius: 25px;
     font-size: 1rem;
     cursor: pointer;
-    background-color: #7B5FC5; 
+    background-color: #7B5FC5;
     color: #fff;
     font-weight: 600;
-    transition: background 0.3s ease, transform 0.2s ease;
+    transition: background 0.3s ease, transform 0.3s ease;
 }
 
 .login-container button:hover {
-    background-color: #653fa0; 
-    transform: translateY(-2px);
-}
-
-.login-container input::placeholder {
-    color: #999;
+    background-color: #653fa0;
+    transform: translateY(-3px);
 }
