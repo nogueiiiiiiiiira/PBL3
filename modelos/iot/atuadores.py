@@ -5,6 +5,7 @@ class Atuador(db.Model):
     __tablename__ = 'atuadores'
     id = db.Column('id', db.Integer, primary_key=True)
     dispositivos_id = db.Column(db.Integer, db.ForeignKey(Dispositivo.id))
+    dispositivo = db.relationship('Dispositivo', backref='atuadores')
     unidade = db.Column(db.String(50))
     topico = db.Column(db.String(50))
 
