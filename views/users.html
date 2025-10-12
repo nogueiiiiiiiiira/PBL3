@@ -2,23 +2,23 @@
 
 {% block title %}
 <title>Usuários - Sistema IoT</title>
-<link rel="stylesheet" href="{{ url_for('static', filename='css/users.css') }}" />
+<link rel="stylesheet" href="{{ url_for('static', filename='css/usuarios.css') }}" />
 {% endblock %}
 
 {% block content %}
-<div class="users-page">
+<div class="pagina-usuarios">
 
-    <div class="users-header">
+    <div class="cabecalho-usuarios">
         <h2>Gerenciamento de Usuários</h2>
         <a href="{{ url_for('cadastrar_usuario') }}">Adicionar Usuário</a>
     </div>
 
 
-    <div class="users-card">
+    <div class="cartao-usuarios">
         <h5>Lista de Usuários Cadastrados</h5>
 
         {% if usuarios %}
-        <table id="view_users">
+        <table id="visualizar_usuarios">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -44,8 +44,7 @@
                     <td>
                         <div role="group">
                             <a href="{{ url_for('usuarios.atualizar_usuario', id_usuario=usuario.id) }}">Editar</a>
-                            <a href="{{ url_for('usuarios.deletar_usuario', id_usuario=usuario.id) }}"
-                                onclick="return confirm('Tem certeza que deseja remover este usuário?')">Remover</a>
+                            <button onclick="deletar_usuario({{ usuario.id }})">Remover</button>
                         </div>
                     </td>
                 </tr>
@@ -53,11 +52,12 @@
             </tbody>
         </table>
         {% else %}
-        <div class="users-empty">
+        <div class="usuarios-vazio">
             <h5>Nenhum usuário cadastrado</h5>
             <p>Comece adicionando o primeiro usuário do sistema.</p>
         </div>
         {% endif %}
     </div>
 </div>
+
 {% endblock %}

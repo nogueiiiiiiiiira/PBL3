@@ -7,13 +7,13 @@
 
 {% block content %}
 <div class="sensors-page">
-    
+
     <div class="sensors-header">
         <h2>Gerenciamento de Sensores</h2>
         <a href="{{ url_for('cadastrar_sensor') }}" class="btn-primary">Adicionar Sensor</a>
     </div>
 
-    
+
     <div class="sensors-card">
         <h5>Lista de Sensores Cadastrados</h5>
 
@@ -48,8 +48,7 @@
                     <td>
                         <div role="group">
                             <a href="{{ url_for('sensor_.atualizar_sensor', id_sensor=sensor.id) }}">Editar</a>
-                            <a href="{{ url_for('sensor_.deletar_sensor', id_sensor=sensor.id) }}"
-                               onclick="return confirm('Tem certeza que deseja remover este sensor?')">Deletar</a>
+                            <button onclick="deleteSensor({{ sensor.id }})">Deletar</button>
                         </div>
                     </td>
                 </tr>
@@ -64,6 +63,9 @@
         {% endif %}
     </div>
 </div>
+
+
+
 {% endblock %}
 
 

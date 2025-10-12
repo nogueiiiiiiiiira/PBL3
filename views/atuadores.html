@@ -7,13 +7,13 @@
 
 {% block content %}
 <div class="atuators-page">
-    
+
     <div class="atuators-header">
         <h2>Gerenciamento de Atuadores</h2>
         <a href="{{ url_for('cadastrar_atuador') }}" class="btn-primary">Adicionar Atuador</a>
     </div>
 
-    
+
     <div class="atuators-card">
         <h5>Lista de Atuadores Cadastrados</h5>
 
@@ -48,8 +48,7 @@
                     <td>
                         <div role="group">
                             <a href="{{ url_for('atuador_.atualizar_atuador', id_atuador=atuador.id) }}">Editar</a>
-                            <a href="{{ url_for('atuador_.deletar_atuador', id_atuador=atuador.id) }}"
-                               onclick="return confirm('Tem certeza que deseja remover este atuador?')">Deletar</a>
+                            <button onclick="deleteAtuador({{ atuador.id }})">Deletar</button>
                         </div>
                     </td>
                 </tr>
@@ -64,6 +63,9 @@
         {% endif %}
     </div>
 </div>
+
+
+
 {% endblock %}
 
 

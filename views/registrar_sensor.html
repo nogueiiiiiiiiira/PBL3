@@ -13,8 +13,8 @@
         </div>
 
         <div class="sensor-card-body">
-            <form action="{{ url_for('sensor_.adicionar_sensor') }}" method="POST" class="sensor-form">
-                
+            <form id="registerSensorForm" class="sensor-form" data-url="{{ url_for('sensor_.adicionar_sensor') }}">
+
                 <div class="form-row">
                     <div class="form-group">
                         <label> Nome do Sensor</label>
@@ -27,7 +27,7 @@
                     </div>
                 </div>
 
-                
+
                 <div class="form-row">
                     <div class="form-group">
                         <label> Modelo</label>
@@ -50,21 +50,21 @@
                     </div>
                 </div>
 
-                
+
                 <div class="form-group">
                     <label> Tópico MQTT</label>
                     <input type="text" id="topic" name="topic" placeholder="Ex: sensors/temperature/room1" required>
                     <small>Tópico onde o sensor publicará os dados via MQTT.</small>
                 </div>
 
-                
+
                 <div class="form-checkbox">
                     <input type="checkbox" id="is_active" name="is_active" checked>
                     <label> Sensor Ativo</label>
                 </div>
                 <small>Desmarque se o sensor estiver temporariamente fora de operação.</small>
 
-                
+
                 <div class="form-actions">
                     <button type="submit" class="btn-primary"> Cadastrar Sensor </button>
                     <a href="{{ url_for('sensores') }}" class="btn-secondary"> Voltar </a>
@@ -73,6 +73,9 @@
         </div>
     </div>
 </div>
+
+
+
 {% endblock %}
 
 

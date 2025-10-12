@@ -7,5 +7,5 @@ class Dispositivo(db.Model):
     marca = db.Column(db.String(50), nullable=False)
     modelo = db.Column(db.String(50), nullable=False)
     ativo = db.Column(db.Boolean, nullable=False, default=False)
-    sensores = db.relationship('Sensor', backref='dispositivo', lazy=True)
-    atuadores = db.relationship('Atuador', backref='dispositivo', lazy=True)
+    sensores = db.relationship('Sensor', lazy=True)
+    atuadores = db.relationship('Atuador', lazy=True)

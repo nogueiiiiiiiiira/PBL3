@@ -7,7 +7,7 @@ class Atuador(db.Model):
     dispositivos_id = db.Column(db.Integer, db.ForeignKey(Dispositivo.id))
     unidade = db.Column(db.String(50))
     topico = db.Column(db.String(50))
-    dispositivo = db.relationship('Dispositivo', backref='atuadores')
+    dispositivo = db.relationship('Dispositivo')
 
     
     @classmethod

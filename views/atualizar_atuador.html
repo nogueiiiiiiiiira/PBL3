@@ -1,36 +1,67 @@
-{% extends"base.html" %}
+{% extends "base.html" %}
+
+{% block title %}
+<title>Atualizar Atuador - Sistema IoT</title>
 <link rel="stylesheet" href="{{ url_for('static', filename='css/atualizar_atuador.css') }}" />
-{% block content%}
-<div>
-    <div>
-        <div>
-            <div>
-                <div>
-                    {%for atuador in atuador%}
-                    <form action="http://localhost:8080/update_atuador" method="post">
-                        <p>id:</p>
-                        <p><input type="text" name="id" value="{{atuador.id}}" readonly /></p>
-                        <p>Nome:</p>
-                        <p><input type="text" name="name" value="{{atuador.name}}" required /></p>
-                        <p>Marca:</p>
-                        <p><input type="text" name="brand" value='{{atuador.brand}}' required /></p>
-                        <p>Modelo:</p>
-                        <p><input type="text" name="model" value='{{atuador.model}}' required /></p>
-                        <p>Unidade de Medida:</p>
-                        <p><input type="text" name="unit" value='{{atuador.unit}}' required /></p>
-                        <p>Tópico MQTT:</p>
-                        <p><input type="text" name="topic" value='{{atuador.topic}}' required /></p>
-                        <div>
-                            <input type="checkbox" id="is_active" name="is_active" checked />
-                            <label for="is_active">Ativo?</label>
-                        </div>
-                        {%endfor%}
-                        <p><input type="submit" value="Alterar" /></p>
-                    </form>
+{% endblock %}
+
+{% block content %}
+<div class="atuador-update-page">
+    <div class="atuador-card">
+        <div class="atuador-card-header">
+            <h4>Atualizar Atuador</h4>
+        </div>
+
+        <div class="atuador-card-body">
+            {% for atuador in atuador %}
+            <form id="updateAtuadorForm" class="atuador-form" data-url="http://localhost:8080/update_atuador">
+                <input type="hidden" name="id" value="{{ atuador.id }}" />
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Nome do Atuador</label>
+                        <input type="text" name="name" value="{{ atuador.name }}" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Marca</label>
+                        <input type="text" name="brand" value="{{ atuador.brand }}" required>
+                    </div>
                 </div>
-            </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Modelo</label>
+                        <input type="text" name="model" value="{{ atuador.model }}" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Unidade de Comando</label>
+                        <input type="text" name="unit" value="{{ atuador.unit }}" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Tópico MQTT</label>
+                    <input type="text" name="topic" value="{{ atuador.topic }}" required>
+                </div>
+
+                <div class="form-checkbox">
+                    <input type="checkbox" id="is_active" name="is_active" {% if atuador.is_active %}checked{% endif %}>
+                    <label for="is_active">Atuador Ativo</label>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary">Atualizar Atuador</button>
+                    <a href="{{ url_for('atuadores') }}" class="btn-secondary">Voltar</a>
+                </div>
+            </form>
+            {% endfor %}
         </div>
     </div>
 </div>
-{% endblock%}
+
+
+
+{% endblock %}
 

@@ -13,9 +13,9 @@
         </div>
 
         <div class="atuador-register-card-body">
-            <form action="{{ url_for('atuador_.adicionar_atuador') }}" method="POST" class="atuador-form">
-                
-                
+            <form id="registerAtuadorForm" class="atuador-form" data-url="{{ url_for('atuador_.adicionar_atuador') }}">
+
+
                 <div class="form-row">
                     <div class="form-group">
                         <label>Nome do Atuador</label>
@@ -28,50 +28,9 @@
                     </div>
                 </div>
 
-                
+
                 <div class="form-row">
                     <div class="form-group">
                         <label>Modelo</label>
-                        <input type="text" id="model" name="model" placeholder="Ex: Relay-5V" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Unidade de Comando</label>
-                        <select id="unit" name="unit" required>
-                            <option value="">Selecione a unidade</option>
-                            <option value="ON/OFF">ON/OFF (Ligado/Desligado)</option>
-                            <option value="%">% (Porcentagem)</option>
-                            <option value="V">V (Voltagem)</option>
-                            <option value="PWM">PWM (Modulação)</option>
-                            <option value="outro">Outro</option>
-                        </select>
-                    </div>
-                </div>
-
-                
-                <div class="form-group">
-                    <label>Tópico MQTT</label>
-                    <input type="text" id="topic" name="topic" placeholder="Ex: actuators/light/room1" required>
-                    <small>Tópico onde o atuador receberá comandos via MQTT</small>
-                </div>
-
-                
-                <div class="form-checkbox">
-                    <input type="checkbox" id="is_active" name="is_active" checked>
-                    <label>Atuador Ativo</label>
-                </div>
-                <small>Desmarque se o atuador estiver temporariamente fora de operação</small>
-
-                
-                <div class="form-actions">
-                    <button type="submit" class="btn-primary">Cadastrar Atuador</button>
-                    <a href="{{ url_for('atuadores') }}" class="btn-secondary">Voltar</a>
-                </div>
-
-            </form>
-        </div>
-    </div>
-</div>
-{% endblock %}
 
 

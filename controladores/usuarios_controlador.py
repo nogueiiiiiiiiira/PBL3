@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, flash, session, url_for
+from flask import Blueprint, render_template, request, redirect, session, url_for, jsonify
 from werkzeug.security import generate_password_hash
 from functools import wraps
 from modelos.user.user import Usuario
@@ -33,14 +33,12 @@ def adicionar_usuario():
         ativo = True if request.form.get('ativo') == 'on' else False
         usuario_existente = Usuario.obter_usuario_por_email(email)
         if usuario_existente:
-            flash('Email já cadastrado no sistema', 'error')
-            return redirect(url_for('usuarios.cadastrar_usuario'))
+            return jsonify({'message': 'Email já cadastrado no sistema'})
         senha_hash = generate_password_hash(senha)
         usuario = Usuario.salvar_usuario(nome, email, senha_hash, ativo)
-        return redirect(url_for('usuarios.listar_usuarios'))
+        return jsonify({'message': 'Usuário cadastrado com sucesso!', 'redirect': url_for('usuarios.listar_usuarios')})
     except Exception as e:
-        flash(f'Erro ao cadastrar usuário: {str(e)}', 'error')
-        return redirect(url_for('usuarios.cadastrar_usuario'))
+        return jsonify({'message': f'Erro ao cadastrar usuário: {str(e)}'})
 
 @usuarios_bp.route('/atualizar_usuario/<int:id_usuario>', methods=['POST'])
 def atualizar_usuario_post(id_usuario):
@@ -59,22 +57,18 @@ def atualizar_usuario_post(id_usuario):
         dados_atualizacao['ativo'] = ativo
         usuario = Usuario.atualizar_usuario(id_usuario, **dados_atualizacao)
         if usuario:
-            flash('Usuário atualizado com sucesso!', 'success')
+            return jsonify({'message': 'Usuário atualizado com sucesso!', 'redirect': url_for('usuarios.listar_usuarios')})
         else:
-            flash('Usuário não encontrado', 'error')
-        return redirect(url_for('usuarios.listar_usuarios'))
+            return jsonify({'message': 'Usuário não encontrado'})
     except Exception as e:
-        flash(f'Erro ao atualizar usuário: {str(e)}', 'error')
-        return redirect(url_for('usuarios.listar_usuarios'))
+        return jsonify({'message': f'Erro ao atualizar usuário: {str(e)}'})
 
 @usuarios_bp.route('/deletar_usuario/<int:id_usuario>')
 def deletar_usuario(id_usuario):
     try:
         if Usuario.deletar_usuario(id_usuario):
-            flash('Usuário removido com sucesso!', 'success')
+            return jsonify({'message': 'Usuário removido com sucesso!', 'redirect': url_for('usuarios.listar_usuarios')})
         else:
-            flash('Usuário não encontrado', 'error')
-        return redirect(url_for('usuarios.listar_usuarios'))
+            return jsonify({'message': 'Usuário não encontrado'})
     except Exception as e:
-        flash(f'Erro ao remover usuário: {str(e)}', 'error')
-        return redirect(url_for('usuarios.listar_usuarios'))
+        return jsonify({'message': f'Erro ao remover usuário: {str(e)}'})

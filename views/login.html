@@ -11,19 +11,41 @@
 <body class="login-page">
     <div class="login-container">
         <h3>Login</h3>
-        {% with mensagens = get_flashed_messages(with_categories=true) %}
-        {% if mensagens %}
-        {% for categoria, mensagem in mensagens %}
-        <script>alert('{{ mensagem }}');</script>
-        {% endfor %}
-        {% endif %}
-        {% endwith %}
-        <form action="{{ url_for('validar_usuario') }}" method="POST">
+        <form id="loginForm" method="POST">
             <input type="email" id="email" name="email" placeholder="Digite seu email: " required>
             <input type="password" id="password" name="password" placeholder="Digite sua senha: " required>
             <button type="submit">Entrar</button>
         </form>
     </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            fetch('{{ url_for("validar_usuario") }}', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success === false) {
+                    alert(data.message);
+                } else if (data.message) {
+                    alert(data.message);
+                    if (data.redirect) {
+                        window.location.href = data.redirect;
+                    }
+                } else if (data.redirect) {
+                    window.location.href = data.redirect;
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Erro ao processar a solicitação.');
+            });
+        });
+    </script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 
 </html>
