@@ -27,7 +27,7 @@ def mqtt_callback(topic, msg):
             sensor.measure()
             temperatura = sensor.temperature()
             umidade = sensor.humidity()
-            # Envia como JSON
+            # envia como JSON
             client.publish(TOPICO_TEMPERATURA, '{"sensor":"/sensor/temperatura", "valor":' + str(temperatura) + '}')
             client.publish(TOPICO_UMIDADE, '{"sensor":"/sensor/umidade", "valor":' + str(umidade) + '}')
         except Exception as e:
